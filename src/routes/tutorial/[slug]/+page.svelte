@@ -312,14 +312,14 @@
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@sveltejs" />
 	<meta name="twitter:creator" content="@sveltejs" />
-	<meta name="twitter:image" content="https://svelte.dev/images/twitter-thumbnail.jpg" />
-	<meta property="twitter:domain" content="learn.svelte.dev" />
-	<meta property="twitter:url" content="https://learn.svelte.dev" />
+	<meta name="twitter:image" content="https://svelte.jp/images/twitter-thumbnail.jpg" />
+	<meta property="twitter:domain" content="learn.svelte.jp" />
+	<meta property="twitter:url" content="https://learn.svelte.jp" />
 
 	<meta property="og:title" content="{data.exercise.title} • Svelte Tutorial" />
-	<meta property="og:url" content="https://learn.svelte.dev" />
+	<meta property="og:url" content="https://learn.svelte.jp" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="https://svelte.dev/images/twitter-thumbnail.jpg" />
+	<meta property="og:image" content="https://svelte.jp/images/twitter-thumbnail.jpg" />
 </svelte:head>
 
 <ContextMenu />
@@ -379,9 +379,9 @@
 								}}
 							>
 								{#if completed && Object.keys(data.exercise.b).length > 0}
-									reset
+									リセット	
 								{:else}
-									solve <Icon name="arrow-right" />
+									正解を見る <Icon name="arrow-right" />
 								{/if}
 							</button>
 						</section>

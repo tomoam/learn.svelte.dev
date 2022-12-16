@@ -12,7 +12,7 @@
 
 	const dispatch = createEventDispatcher();
 
-	const namespace = 'learn.svelte.dev';
+	const namespace = 'learn.svelte.jp';
 	const copy_enabled = `${namespace}:copy_enabled`;
 
 	/** @type {HTMLElement} */
@@ -77,7 +77,7 @@
 		target="_blank"
 		rel="noreferrer"
 		class="edit"
-		href="https://github.com/sveltejs/learn.svelte.dev/tree/main/{exercise.dir}"
+		href="https://github.com/svelte-jp/learn.svelte.dev/tree/main/{exercise.dir}"
 	>
 		Edit this page
 	</a>
@@ -86,11 +86,11 @@
 {#if show_modal}
 	<Modal on:close={() => (show_modal = false)}>
 		<div class="modal-contents">
-			<h2>Copy and paste is currently disabled!</h2>
+			<h2>コピー&ペーストは現在無効です！</h2>
 
 			<p>
-				We recommend typing the code into the editor to complete the exercise, as this results in
-				better retention and understanding.
+				練習問題を完了する上で、コードをエディタに手入力することをおすすめします。
+				これによって理解が深まり記憶に定着します。
 			</p>
 			<label>
 				<input
@@ -99,7 +99,7 @@
 						sessionStorage[copy_enabled] = e.currentTarget.checked ? 'true' : '';
 					}}
 				/>
-				enable copy-and-paste for the duration of this session
+				このセッションの間、コピー&ペーストを有効にする
 			</label>
 
 			<button on:click={() => (show_modal = false)}>OK</button>

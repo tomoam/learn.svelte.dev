@@ -20,7 +20,7 @@
 
 <Nav {page} logo="/svelte-logo.svg">
 	<svelte:fragment slot="nav-center">
-		<strong class="large">Work in progress. Here be dragons!</strong>
+		<strong class="large">開発中です。バグがある可能性があります！</strong>
 		<!-- <NavItem href="/tutorial">Tutorial</NavItem>
 		<NavItem href="/docs">Docs</NavItem>
 		<NavItem href="/examples">Examples</NavItem>
@@ -30,7 +30,7 @@
 	</svelte:fragment>
 
 	<svelte:fragment slot="nav-right">
-		<NavItem external="https://kit.svelte.dev">SvelteKit</NavItem>
+		<NavItem external="https://kit.svelte.jp">SvelteKit</NavItem>
 
 		<NavItem external="https://svelte.dev/chat" title="Discord Chat">
 			<span class="small">Discord</span>
