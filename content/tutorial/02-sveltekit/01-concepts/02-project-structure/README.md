@@ -2,14 +2,14 @@
 title: Project structure
 ---
 
-On the right, in the file tree viewer, you'll see a handful of files that SvelteKit expects to find in a project.
+右にあるファイルツリービューアには、SvelteKit のプロジェクトに含まれているであろうファイルのうち一部が表示されています。
 
-`package.json` will be familiar if you've worked with Node.js before. It lists the project's dependencies — including `svelte` and `@sveltejs/kit` — and a variety of `scripts` for interacting with the SvelteKit CLI. (We're currently running `npm run dev` in the bottom window.)
+Node.js を使用したことがあるなら、`package.json` はおなじみでしょう。プロジェクトの依存関係 (`svelte` と `@sveltejs/kit` を含む) と、SvelteKit CLI を操作するための様々な `scripts` がリストアップされています。(現在バックグラウンドで `npm run dev` が実行されています)
 
-> Note that it also specifies `"type": "module"`, which means that `.js` files are treated as native JavaScript modules by default, rather than the legacy CommonJS format.
+> `"type": "module"` が指定されていることにもご注意ください。つまり、`.js` ファイルはデフォルトで、レガシーな CommonJS フォーマットではなくネイティブの JavaScript モジュールとして扱われます。
 
-`svelte.config.js` contains your project configuration. We don't need to worry about this file for now, but if you're curious, [visit the documentation](https://kit.svelte.dev/docs/configuration).
+`svelte.config.js` にはプロジェクトの設定が記述されています。今はこのファイルについて気にする必要はありませんが、もし興味があれば、[ドキュメントを参照してください](https://kit.svelte.jp/docs/configuration)。
 
-`src` is where your app's source code goes. `src/app.html` is your page template (SvelteKit replaces the `%sveltekit.head%` and `%sveltekit.body%` as appropriate), and `src/routes` defines the [routes](/tutorial/pages) of your app.
+`src` はアプリのソースコードを置く場所です。`src/app.html` はページのテンプレート (SvelteKit が `%sveltekit.head%` と `%sveltekit.body%` を適切に置き換えます) で、`src/routes` はアプリの [ルート(routes)](/tutorial/pages) を定義します。
 
-Finally, `static` contains any assets (like a `favicon.png` or a `robots.txt`) that should be included when your app is deployed.
+最後に、`static` にはアプリをデプロイするときに含めるべきアセット (`favicon.png` や `robots.txt` など) を置きます。

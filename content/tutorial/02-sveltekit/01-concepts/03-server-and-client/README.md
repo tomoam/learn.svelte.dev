@@ -2,12 +2,12 @@
 title: Server and client
 ---
 
-A SvelteKit app can be thought of as two distinct entities working in tandem — the _server_ and the _client_.
+SvelteKit アプリは、2つの異なる存在が連携して動作していると考えることができます。つまりそれは _サーバー_ と _クライアント_ です。
 
-'Server' is, perhaps, a confusing word since your app will often be running in a _serverless_ environment (cloud/edge functions) or might even be deployed as a set of completely static files. But it's the best we've got. The server's basic job is to turn a request into a response.
+'サーバー' は、もしかしたら混乱を招く言葉かもしれません。なぜなら、アプリが _サーバーレス(serverless)_ 環境 (cloud/edge functions) で実行されたり、完全に静的なファイルのセットとしてデプロイされたりするからです。しかし、これがベストな言葉です。サーバーの基本的な仕事は、リクエストをレスポンスに変換することです。
 
-'Client' refers to the JavaScript that loads in the browser.
+'クライアント' は、ブラウザに読み込まれる JavaScript を指します。
 
-SvelteKit makes the two communicate with each other seamlessly. On the initial page load, the server renders the HTML, meaning content is visible as quickly as possible. The client then takes over in a process called 'hydration', so that subsequent navigations happen without full page reloads. It will request additional code and data from the server as needed.
+SvelteKit はこの2つをお互いにシームレスに通信させるようにします。最初のページロードでは、サーバーが HTML をレンダリングし、コンテンツを可能な限り早く表示させます。その後、'ハイドレーション(hydration)' と呼ばれるプロセスでクライアントが引き継ぐため、以降のナビゲーションではページをフルで再読み込みすることはありません。クライアントは、必要に応じて追加のコードやデータをサーバーにリクエストします。
 
-> You can [adjust this behavior](https://kit.svelte.dev/docs/page-options) as needed. SvelteKit is very versatile!
+> 必要に応じて [この動作を調整](https://kit.svelte.jp/docs/page-options) することができます。SvelteKit は非常に多機能です！
