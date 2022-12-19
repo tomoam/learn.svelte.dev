@@ -2,13 +2,13 @@
 title: Pages
 ---
 
-SvelteKit uses filesystem-based routing, which means that the _routes_ of your app — in other words, what the app should do when a user navigates to a particular URL — are defined by the directories in your codebase.
+SvelteKit はファイルシステムベースのルーティングを採用しており、アプリの _ルート(routes)_ (言い換えると、ユーザーが特定の URL に移動したときにアプリがすべきこと) については、コードベースのディレクトリで定義します。
 
-The routes are located within `src/routes`. Every directory within which contains a `+page.svelte` file creates a route in your app.
+ルート(routes)は `src/routes` の中に置きます。`+page.svelte` ファイルを含む全てのディレクトリが、アプリのルート(routes)となります。
 
-In this app we currently have one route — `src/routes/+page.svelte`, which maps to `/`.
+このアプリには、現在はルート(route)が1つだけあります。それは `src/routes/+page.svelte` で、`/` にマップされています。
 
-Let's add a second route, `src/routes/about/+page.svelte`, which maps to `/about`:
+2つ目のルート(route)として、`src/routes/about/+page.svelte` を追加してみましょう。これは `/about` にマップされます。
 
 ```svelte
 /// file: src/routes/about/+page.svelte
@@ -21,6 +21,6 @@ Let's add a second route, `src/routes/about/+page.svelte`, which maps to `/about
 <p>this is the about page.</p>
 ```
 
-We can now navigate between `/` and `/about`.
+これによって `/` と `/about` の間を移動できるようになりました。
 
-> Unlike traditional multi-page apps, navigating to `/about` and back updates the contents of the current page, like a single-page app. This gives us the best of both worlds — fast server-rendered startup, then instant navigation. (This behaviour can be [configured](https://kit.svelte.dev/docs/page-options).)
+> 従来のマルチページアプリとは違い、`/about` に移動してから戻ると、シングルページアプリのように現在のページのコンテンツが更新されます。これにより、サーバーレンダリングによるスタートアップと、瞬時のナビゲーションという、両方の長所を得ることができます。(この動作は[設定で変更できます](https://kit.svelte.jp/docs/page-options)。)
