@@ -4,7 +4,7 @@ title: GET handlers
 
 SvelteKit では、ページ以外にも様々なものを作ることができます。`+server.js` ファイルを追加し、そこでHTTP メソッド `GET`、`PUT`、`POST`、`PATCH`、`DELETE` に対応する関数をエクスポートすることで、 _API ルート(API routes)_ を作成することもできます。
 
-このアプリは、ボタンwをクリックしたときに `/roll` API ルートからデータを取得します。`src/routes/roll/+server.js` ファイルを追加し、そのルートを作成しましょう。
+このアプリは、ボタンをクリックしたときに `/roll` API ルートからデータを取得します。`src/routes/roll/+server.js` ファイルを追加し、そのルートを作成しましょう。
 
 ```js
 /// file: src/routes/roll/+server.js
