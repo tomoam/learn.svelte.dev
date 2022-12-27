@@ -2,6 +2,6 @@
 title: handle
 ---
 
-SvelteKit provides several _hooks_ — ways to intercept and override the framework's default behaviour.
+SvelteKit では、フレームワークのデフォルトの振る舞いをインターセプトしてオーバーライドするための方法である _hooks_ をいくつか提供しています。
 
 > Coming soon
