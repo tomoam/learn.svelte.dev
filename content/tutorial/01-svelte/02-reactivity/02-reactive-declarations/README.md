@@ -2,18 +2,18 @@
 title: Declarations
 ---
 
-Svelte automatically updates the DOM when your component's state changes. Often, some parts of a component's state need to be computed from _other_ parts (such as a `fullname` derived from a `firstname` and a `lastname`), and recomputed whenever they change.
+Svelte は、コンポーネントの状態が変更されると自動的に DOM を更新します。しばしば、コンポーネントの状態には、 _他の_ 状態から計算しなければならない部分があり (例えば、`firstname` と `lastname` から派生する `fullname`)、それらが変更されるたびに再計算しなければなりません。
 
-For these, we have _reactive declarations_. They look like this:
+これに対応するために、 _リアクティブ宣言(reactive declarations)_ があります。次のように記述します。
 
 ```js
 let count = 0;
 +++$: doubled = count * 2;+++
 ```
 
-> Don't worry if this looks a little alien. It's [valid](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) (if unconventional) JavaScript, which Svelte interprets to mean 're-run this code whenever any of the referenced values change'. Once you get used to it, there's no going back.
+> これが少し異質に見えても心配しないでください。これは（見慣れないかもしれませんが） [正しい](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/label) JavaScript で、Svelte は「参照される値が変わるたびにこのコードを再実行する」という意味だと解釈します。一度慣れてしまえば、もう戻れません。
 
-Let's use `doubled` in our markup:
+マークアップで `doubled` を使ってみましょう。
 
 ```svelte
 <button>...</button>
@@ -21,4 +21,4 @@ Let's use `doubled` in our markup:
 +++<p>{count} doubled is {doubled}</p>+++
 ```
 
-Of course, you could just write `{count * 2}` in the markup instead — you don't have to use reactive values. Reactive values become particularly valuable (no pun intended) when you need to reference them multiple times, or you have values that depend on _other_ reactive values.
+もちろん、代わりに `{count * 2}` とマークアップに書くだけでもよいでしょう。リアクティブな値を使用する必要はありません。リアクティブな値は、複数回参照する必要がある場合や、*他の* リアクティブな値に依存する値がある場合に特に価値があります。

@@ -2,9 +2,9 @@
 title: Updating arrays and objects
 ---
 
-Because Svelte's reactivity is triggered by assignments, using array methods like `push` and `splice` won't automatically cause updates. For example, clicking the 'Add a number' button doesn't currently do anything.
+Svelte のりアクティビティは代入によってトリガーされるため、`push` や `splice` のような配列のメソッドを使用しても更新が自動的に行われません。例えば、'Add a number' ボタンをクリックしても今のところ何も起こりません。
 
-One way to fix that is to add an assignment that would otherwise be redundant:
+これを修正する方法の1つとして、冗長に見えるかもしれませんが、代入を追加することです。
 
 ```js
 function addNumber() {
@@ -13,7 +13,7 @@ function addNumber() {
 }
 ```
 
-But there's a more idiomatic solution:
+もう少し慣用的な解決策もあります。
 
 ```js
 function addNumber() {
@@ -21,9 +21,9 @@ function addNumber() {
 }
 ```
 
-You can use similar patterns to replace `pop`, `shift`, `unshift` and `splice`.
+同様のパターンで、`pop`、`shift`、`unshift`、`splice` を置き換えることができます。
 
-Assignments to _properties_ of arrays and objects — e.g. `obj.foo += 1` or `array[i] = x` — work the same way as assignments to the values themselves.
+配列やオブジェクトの *プロパティ* への代入（例：`obj.foo += 1` や `array[i] = x`）は値自体への代入と同じように動作します。
 
 ```js
 function addNumber() {
@@ -31,11 +31,11 @@ function addNumber() {
 }
 ```
 
-A simple rule of thumb: the name of the updated variable must appear on the left hand side of the assignment. For example this...
+大まかなまとめ: 更新される変数の名前は、代入の左側に置かなければならない。例えばこれは…
 
 ```js
 const foo = obj.foo;
 foo.bar = 'baz';
 ```
 
-...won't trigger reactivity on `obj.foo.bar`, unless you follow it up with `obj = obj`.
+…`obj.foo.bar` に対するリアクティビティはトリガーされません。もしトリガーしたければ、`obj = obj` を続けて書く必要があります。
