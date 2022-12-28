@@ -2,7 +2,7 @@
 title: Statements
 ---
 
-We're not limited to declaring reactive _values_ — we can also run arbitrary _statements_ reactively. For example, we can log the value of `count` whenever it changes:
+リアクティブな *値* を宣言するだけでなく、任意の *ステートメント* をリアクティブに実行することもできます。例えば、`count` の値が変化するたびにログを取ることができます。
 
 ```js
 let count = 0;
@@ -10,7 +10,7 @@ let count = 0;
 +++$: console.log(`the count is ${count}`);+++
 ```
 
-You can easily group statements together with a block:
+ブロックで簡単にステートメントをグループ化することができます。
 
 ```js
 $: +++{+++
@@ -19,7 +19,7 @@ $: +++{+++
 +++}+++
 ```
 
-You can even put the `$:` in front of things like `if` blocks:
+`if` ブロックなどの前に `$:` を置くこともできます。
 
 ```js
 $: +++if (count >= 10)+++ {
