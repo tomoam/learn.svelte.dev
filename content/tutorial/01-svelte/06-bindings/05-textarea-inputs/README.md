@@ -2,18 +2,18 @@
 title: Textarea inputs
 ---
 
-> This exercise doesn't currently work. You can switch to the old tutorial instead: https://svelte.dev/tutorial/textarea-inputs
+> この練習問題は現時点では動作しません。代わりに、既存のチュートリアルをお試しください: https://svelte.jp/tutorial/textarea-inputs
 
-The `<textarea>` element behaves similarly to a text input in Svelte — use `bind:value`:
+Svelteでは、`<textarea>`要素はtext inputと同じように振る舞います。`bind:value`を使ってみましょう。
 
 ```svelte
 <textarea bind:value={value}></textarea>
 ```
 
-In cases like these, where the names match, we can also use a shorthand form:
+このように名前が一致する場合は、省略形を使用することもできます。
 
 ```svelte
 <textarea bind:value></textarea>
 ```
 
-This applies to all bindings, not just textareas.
+これはtextareaに限らず全てのバインディングに適用されます。

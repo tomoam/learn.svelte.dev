@@ -2,21 +2,21 @@
 title: Group inputs
 ---
 
-If you have multiple inputs relating to the same value, you can use `bind:group` along with the `value` attribute. Radio inputs in the same group are mutually exclusive; checkbox inputs in the same group form an array of selected values.
+同じ値に関係する複数のinputがあるなら、`value`属性に加えて`bind:group`を使用できます。同じグループ内のラジオinputは相互に排他的で、同じグループ内のチェックボックスinputは選択された値の配列を形成します。 
 
-Add `bind:group` to each input:
+各inputに`bind:group`を追加しましょう。
 
 ```svelte
 <input type=radio bind:group={scoops} name="scoops" value={1}>
 ```
 
-In this case, we could make the code simpler by moving the checkbox inputs into an `each` block. First, add a `menu` variable to the `<script>` block...
+この場合、チェックボックスinputを`each`ブロックに移動させることでコードをよりシンプルにすることができます。まず、`<script>`ブロックに`menu`変数を追加します。
 
 ```js
 let menu = ['Cookies and cream', 'Mint choc chip', 'Raspberry ripple'];
 ```
 
-...then replace the second section:
+…それから2つ目のセクションを置き換えます。
 
 ```svelte
 <h2>Flavours</h2>
@@ -29,4 +29,4 @@ let menu = ['Cookies and cream', 'Mint choc chip', 'Raspberry ripple'];
 {/each}
 ```
 
-It's now easy to expand our ice cream menu in new and exciting directions.
+アイスクリームのメニューを新しいエキサイティングな方向に簡単に拡張できるようになりました。
