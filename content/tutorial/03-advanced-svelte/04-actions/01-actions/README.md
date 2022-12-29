@@ -2,20 +2,20 @@
 title: The use directive
 ---
 
-Actions are essentially element-level lifecycle functions. They're useful for things like:
+アクションは基本的に要素レベルのライフサイクル関数です。これらは以下のような場合に便利です。
 
-- interfacing with third-party libraries
-- lazy-loaded images
-- tooltips
-- adding custom event handlers
+- サードパーティライブラリとの連携
+- 画像の遅延読み込み
+- ツールチップ
+- カスタムイベントハンドラの追加
 
-In this app, we want to make the orange modal close when the user clicks outside it. It has an event handler for the `outclick` event, but it isn't a native DOM event. We have to dispatch it ourselves. First, import the `clickOutside` function...
+このアプリでは、オレンジ色のモーダルを、その外側をクリックしたときに閉じるようにしたいと思います。このアプリには `outclick` イベント用のイベントハンドラがありますが、これはネイティブの DOM イベントではありません。このイベントを自分でディスパッチする必要があります。まず、`clickOutside` 関数をインポートします…
 
 ```js
 import { clickOutside } from './click_outside.js';
 ```
 
-...then use it with the element:
+…そして、それを要素と一緒に使用します。
 
 ```svelte
 <div class="box" use:clickOutside on:outclick="{() => (showModal = false)}">
@@ -23,9 +23,9 @@ import { clickOutside } from './click_outside.js';
 </div>
 ```
 
-Open the `click_outside.js` file. Like transition functions, an action function receives a `node` (which is the element that the action is applied to) and some optional parameters, and returns an action object. That object can have a `destroy` function, which is called when the element is unmounted.
+`click_outside.js` ファイルを開きます。トランジション関数と同様に、アクション関数は `node` (アクションが適用される要素) といくつかのオプションのパラメータを受け取り、アクションオブジェクトを返します。このオブジェクトは `destroy` 関数を持つことができ、要素がマウントされていないときに呼び出されます。
 
-We want to fire the `outclick` event when the user clicks outside the orange box. One possible implementation looks like this:
+ユーザがオレンジ色のボックスの外側をクリックしたときに、`outclick` イベントを発生させたいと考えています。考えられる実装の1つは以下のようになります。
 
 ```js
 export function clickOutside(node) {
@@ -45,4 +45,4 @@ export function clickOutside(node) {
 }
 ```
 
-Update the `clickOutside` function, click the button to show the modal and then click outside it to close it.
+`clickOutside` 関数を更新し、ボタンをクリックしてモーダルを表示し、モーダルの外側をクリックしてモーダルを閉じてみてください。
