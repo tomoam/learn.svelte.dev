@@ -36,7 +36,7 @@ export function longpress(node, duration) {
 return {
 	update(newDuration) {
 		duration = newDuration;
-	}
+	},
 	// ...
 };
 ```

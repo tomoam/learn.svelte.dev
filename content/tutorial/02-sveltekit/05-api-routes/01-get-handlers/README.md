@@ -9,7 +9,7 @@ SvelteKit では、ページ以外にも様々なものを作ることができ�
 ```js
 /// file: src/routes/roll/+server.js
 export function GET() {
-	const number = Math.ceil(Math.random() * 6);
+	const number = Math.floor(Math.random() * 6) + 1;
 
 	return new Response(number, {
 		headers: {
@@ -28,7 +28,7 @@ export function GET() {
 +++import { json } from '@sveltejs/kit';+++
 
 export function GET() {
-	const number = Math.ceil(Math.random() * 6);
+	const number = Math.floor(Math.random() * 6) + 1;
 
 ---	return new Response(number, {
 		headers: {
