@@ -56,6 +56,7 @@ export function createTodo(userid, description) {
 ```js
 /// file: src/routes/+page.server.js
 +++import { fail } from '@sveltejs/kit';+++
+import * as db from '$lib/server/database.js';
 
 export function load({ cookies }) {...}
 

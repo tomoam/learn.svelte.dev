@@ -15,7 +15,7 @@ title: Store bindings
 また、コンポーネント内でストアの値に直接代入することもできます。以下の通り `<button>` 要素を追加してください:
 
 ```svelte
-<button on:click="{() => $name += '!'}">
+<button on:click={() => $name += '!'}>
 	Add exclamation mark!
 </button>
 ```

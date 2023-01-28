@@ -11,6 +11,7 @@ title: prerender
 ページをプリレンダリングするには、`prerender` を `true` に設定します。
 
 ```js
+/// file: src/routes/+page.server.js
 export const prerender = true;
 ```
 
