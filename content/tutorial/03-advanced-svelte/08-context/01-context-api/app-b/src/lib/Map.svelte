@@ -33,6 +33,7 @@
 		rel="stylesheet"
 		href="https://unpkg.com/mapbox-gl/dist/mapbox-gl.css"
 		on:load={load}
+		crossorigin="anonymous"
 	/>
 </svelte:head>
 
