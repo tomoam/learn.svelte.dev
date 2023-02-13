@@ -66,6 +66,32 @@ export async function create(stubs, callback) {
 
 	await vm.run({ command: 'chmod', args: ['a+x', 'node_modules/vite/bin/vite.js'] });
 
+	/** @type {import('@webcontainer/api').WebContainerProcess} */
+	let process;
+
+	async function run_dev() {
+		process = await vm.run(
+			{ command: 'turbo', args: ['run', 'dev'] },
+			{
+				stdout: (data) => {
+					console.log(`[dev] ${data}`);
+				},
+				stderr: (data) => {
+					vite_error = true;
+					console.error(`[dev] ${data}`);
+				}
+			}
+		);
+		// keep restarting dev server (can crash in case of illegal +files for example)
+		process.onExit.then((code) => {
+			if (code !== 0) {
+				setTimeout(() => {
+					run_dev();
+				}, 2000);
+			}
+		});
+	}
+
 	callback(5 / 6, 'starting dev server');
 	const base = await new Promise(async (fulfil, reject) => {
 		const error_unsub = vm.on('error', (error) => {
@@ -80,29 +106,6 @@ export async function create(stubs, callback) {
 		});
 
 		await run_dev();
-
-		async function run_dev() {
-			const process = await vm.run(
-				{ command: 'turbo', args: ['run', 'dev'] },
-				{
-					stdout: (data) => {
-						console.log(`[dev] ${data}`);
-					},
-					stderr: (data) => {
-						vite_error = true;
-						console.error(`[dev] ${data}`);
-					}
-				}
-			);
-			// keep restarting dev server (can crash in case of illegal +files for example)
-			process.onExit.then((code) => {
-				if (code !== 0) {
-					setTimeout(() => {
-						run_dev();
-					}, 2000);
-				}
-			});
-		}
 	});
 
 	return {
@@ -119,6 +122,8 @@ export async function create(stubs, callback) {
 			/** @type {import('$lib/types').Stub[]} */
 			const to_write = [];
 
+			let restart_programatically = false;
+
 			for (const stub of stubs) {
 				if (stub.type === 'file') {
 					const current = /** @type {import('$lib/types').FileStub} */ (
@@ -127,6 +132,10 @@ export async function create(stubs, callback) {
 
 					if (current?.contents !== stub.contents) {
 						to_write.push(stub);
+					}
+
+					if (!current && stub.name === '/.env') {
+						restart_programatically = true;
 					}
 
 					if (!current) added_new_file = true;
@@ -150,7 +159,7 @@ export async function create(stubs, callback) {
 			// request files from Vite before it's ready, leading to a timeout.
 			const will_restart = will_restart_vite_dev_server(to_write);
 			const promise = will_restart
-				? new Promise((fulfil, reject) => {
+				? new Promise(async (fulfil, reject) => {
 						const error_unsub = vm.on('error', (error) => {
 							error_unsub();
 							resolve();
@@ -164,12 +173,20 @@ export async function create(stubs, callback) {
 							fulfil(undefined);
 						});
 
+						if (restart_programatically) {
+							await run_dev();
+						}
+
 						setTimeout(() => {
 							resolve();
 							reject(new Error('Timed out resetting WebContainer'));
 						}, 10000);
 				  })
 				: Promise.resolve();
+
+			if (restart_programatically) {
+				process.kill();
+			}
 
 			for (const file of to_delete) {
 				await vm.fs.rm(file, { force: true, recursive: true });
