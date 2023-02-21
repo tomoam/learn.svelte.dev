@@ -5,9 +5,9 @@ path: /blog
 
 `+layout.svelte` ファイルが全ての子ルート(route)共通の UI を作るのと同じように、`+layout.server.js` ファイルは全ての子ルート(route)共通で使えるデータをロードします。
 
-'more posts'(他の記事) サイドバーを、ブログ記事ページに追加したいと思います。`src/blog/+page.server.js` で行っているのと同じように、`src/blog/[slug]/+page.server.js` の `load` 関数から `summaries` を返すこともできますが、これでは同じことを繰り返すことになってしまいます。
+'more posts'(他の記事) サイドバーを、ブログ記事ページに追加したいと思います。`src/routes/blog/+page.server.js` で行っているのと同じように、`src/routes/blog/[slug]/+page.server.js` の `load` 関数から `summaries` を返すこともできますが、これでは同じことを繰り返すことになってしまいます。
 
-代わりに、`src/blog/+page.server.js` を `src/blog/+layout.server.js` にリネームしましょう。`/blog` ルート(route)が動作し続けていることにご注目ください — `data.summaries` がまだページで利用できているのです。
+代わりに、`src/routes/blog/+page.server.js` を `src/routes/blog/+layout.server.js` にリネームしましょう。`/blog` ルート(route)が動作し続けていることにご注目ください — `data.summaries` がまだページで利用できているのです。
 
 では、記事ページ向けのレイアウトを作りましょう。
 
