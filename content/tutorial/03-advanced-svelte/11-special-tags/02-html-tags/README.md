@@ -12,4 +12,4 @@ Svelteでは、`{@html ...}` という特別なタグを使ってこれを行い
 <p>{+++@html+++ string}</p>
 ```
 
-> Svelte は DOM に挿入される前に `{@html ...}` 内の式のサニタイズを行いません。言い換えると、この機能を使用する場合は信頼できないソースから来た HTML を手動でエスケープすることが重要です、そうしなければユーザーを<a href="https://owasp.org/www-community/attacks/xss/" target="_blank">Cross-Site Scripting</a> (XSS) 攻撃にさらす危険性があります。
+> **Warning!** Svelte は DOM に挿入される前に `{@html ...}` 内の式のサニタイズを行いません。言い換えると、この機能を使用する場合は信頼できないソースから来た HTML を手動でエスケープすることが重要です、そうしないとユーザーを<a href="https://owasp.org/www-community/attacks/xss/" target="_blank">Cross-Site Scripting</a> (XSS) 攻撃にさらす危険性があります。
