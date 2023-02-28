@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "node scripts/create-common-bundle && vite build",
+		"build": "node scripts/create-common-bundle && node scripts/prebuild.js && vite build",
 		"preview": "vite preview",
 		"test": "playwright test",
 		"check": "svelte-check --tsconfig ./jsconfig.json",
@@ -36,6 +36,7 @@
 		"@webcontainer/api": "^1.0.2",
 		"adm-zip": "^0.5.10",
 		"base64-js": "^1.5.1",
+		"mapbox-gl": "^2.13.0",
 		"marked": "^4.2.12",
 		"monaco-editor": "^0.33.0",
 		"port-authority": "^2.0.1",
