@@ -14,5 +14,5 @@ title: Default values
 
 ```svelte
 <Nested answer={42}/>
-+++<Nested/>+++
++++<Nested />+++
 ```
