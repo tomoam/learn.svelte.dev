@@ -9,7 +9,7 @@ HTMLと同じように、コンポーネントには`<style>`タグを置くこ�
 
 <style>
 +++	p {
-		color: purple;
+		color: goldenrod;
 		font-family: 'Comic Sans MS', cursive;
 		font-size: 2em;
 	}+++
