@@ -73,7 +73,7 @@ test('focus management: body inside the iframe gets focus when clicking a link i
 	await expect(page.locator(editor_selector)).toBeFocused();
 
 	// then, click a link in the iframe
-	await page.waitForTimeout(500);
+	await page.waitForTimeout(1000);
 	await iframe.locator('a[href="/about"]').click();
 
 	// wait for navigation
