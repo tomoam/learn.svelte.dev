@@ -76,6 +76,10 @@ test('focus management: the editor does not get focus when clicking a link insid
 	await page.waitForTimeout(500);
 	await page.locator(iframe_selector).click();
 	await iframe.locator('a[href="/about"]').click();
+	await page.waitForTimeout(1000);
+
+	const url = await page.locator('input[aria-label="URL"]').inputValue();
+	expect(url).toEqual('/about');
 
 	// wait for navigation
 	await iframe.getByText('this is the about page.').waitFor();
