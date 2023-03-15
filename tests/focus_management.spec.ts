@@ -83,7 +83,7 @@ test('focus management: body inside the iframe gets focus when clicking a link i
 	await page.waitForTimeout(3000);
 
 	// expect focus to be on body in the iframe, not the editor.
-	await expect(iframe.locator('body')).toBeFocused();
+	await expect(page.locator(iframe_selector)).toBeFocused();
 });
 
 test('focus management: The editor keeps focus while typing', async ({ page }) => {
