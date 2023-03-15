@@ -80,7 +80,7 @@ test('focus management: body inside the iframe gets focus when clicking a link i
 	await iframe.getByText('this is the about page.').waitFor();
 
 	// wait a little, because there may be a script that manipulates focus
-	await page.waitForTimeout(2000);
+	await page.waitForTimeout(3000);
 
 	// expect focus to be on body in the iframe, not the editor.
 	await expect(iframe.locator('body')).toBeFocused();
