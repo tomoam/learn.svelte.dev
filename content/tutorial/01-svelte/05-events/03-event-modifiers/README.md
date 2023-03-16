@@ -7,11 +7,11 @@ DOM イベントハンドラには、それらの動作を変更する修飾子�
 ```svelte
 <script>
 	function handleClick() {
-		alert('no more alerts')
+		alert(+++'no more alerts'+++)
 	}
 </script>
 
-<button on:click|once={handleClick}>
+<button on:click+++|once+++={handleClick}>
 	Click me
 </button>
 ```

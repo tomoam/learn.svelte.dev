@@ -6,11 +6,13 @@ title: Each blocks
 
 ```svelte
 <ul>
-	{#each cats as cat}
-		<li><a target="_blank" href="https://www.youtube.com/watch?v={cat.id}">
-			{cat.name}
-		</a></li>
-	{/each}
+	+++{#each cats as cat}+++
+		<li>
+			<a href="https://www.youtube.com/watch?v={cat.id}">
+				{cat.name}
+			</a>
+		</li>
+	+++{/each}+++
 </ul>
 ```
 
@@ -19,10 +21,12 @@ title: Each blocks
 第2引数として現在の *index* をこのように取得することができます。
 
 ```svelte
-{#each cats as cat, i}
-	<li><a target="_blank" href="https://www.youtube.com/watch?v={cat.id}">
-		{i + 1}: {cat.name}
-	</a></li>
+{#each cats as cat+++, i}+++
+	<li>
+		<a href="https://www.youtube.com/watch?v={cat.id}">
+			+++{i + 1}:+++ {cat.name}
+		</a>
+	</li>
 {/each}
 ```
 
