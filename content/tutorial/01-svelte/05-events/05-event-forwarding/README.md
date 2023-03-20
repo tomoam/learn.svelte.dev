@@ -30,5 +30,5 @@ DOM イベントとは異なり、コンポーネントのイベントは *バ�
 	import Inner from './Inner.svelte';
 </script>
 
-<Inner on:message/>
+<Inner +++on:message+++/>
 ```
