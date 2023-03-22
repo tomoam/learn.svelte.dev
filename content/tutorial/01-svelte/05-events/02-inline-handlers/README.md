@@ -5,6 +5,7 @@ title: Inline handlers
 イベントハンドラをインラインで宣言することもできます。
 
 ```svelte
+/// file: App.svelte
 <script>
 	let m = { x: 0, y: 0 };
 
@@ -15,9 +16,9 @@ title: Inline handlers
 </script>
 
 <div
-	+++on:mousemove={(e) => {
+	on:mousemove={+++(e) => {
 		m = { x: e.clientX, y: e.clientY };
-	}}+++
+	}+++}
 >
 	The mouse position is {m.x} x {m.y}
 </div>

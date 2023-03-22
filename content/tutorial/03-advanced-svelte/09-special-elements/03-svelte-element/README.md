@@ -4,7 +4,8 @@ title: <svelte:element>
 
 どの種類の DOM 要素をレンダリングするのか事前にわからない場合があります。この場合は `<svelte:element>` が便利です。`if` ブロックを何個も並べる代わりに…
 
-```html
+```svelte
+/// file: App.svelte
 {#if selected === 'h1'}
 	<h1>I'm a h1 tag</h1>
 {:else if selected === 'h3'}
@@ -16,7 +17,8 @@ title: <svelte:element>
 
 …動的なコンポーネントを1つ置きます:
 
-```html
+```svelte
+/// file: App.svelte
 <svelte:element this={selected}>I'm a {selected} tag</svelte:element>
 ```
 

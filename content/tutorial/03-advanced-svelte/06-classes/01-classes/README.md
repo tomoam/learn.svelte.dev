@@ -5,18 +5,20 @@ title: The class directive
 他の属性と同じように、JavaScriptの属性でクラスを指定することができます。
 
 ```svelte
+/// file: App.svelte
 <button
-	class="{current === 'foo' ? 'selected' : ''}"
-	on:click="{() => current = 'foo'}"
+	class={current === 'foo' ? 'selected' : ''}
+	on:click={() => current = 'foo'}
 >foo</button>
 ```
 
 これはUI開発ではよくあるパターンで、Svelteにはこれを単純化するための特別なディレクティブが含まれています。
 
 ```svelte
+/// file: App.svelte
 <button
-	class:selected="{current === 'foo'}"
-	on:click="{() => current = 'foo'}"
+	class:selected={current === 'foo'}
+	on:click={() => current = 'foo'}
 >foo</button>
 ```
 

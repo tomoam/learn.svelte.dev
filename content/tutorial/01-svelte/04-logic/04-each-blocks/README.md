@@ -5,6 +5,7 @@ title: Each blocks
 データのリストをループさせる必要がある場合は、`each` ブロックを使ってください。
 
 ```svelte
+/// file: App.svelte
 <ul>
 	+++{#each cats as cat}+++
 		<li>
@@ -21,6 +22,7 @@ title: Each blocks
 第2引数として現在の *index* をこのように取得することができます。
 
 ```svelte
+/// file: App.svelte
 {#each cats as cat+++, i}+++
 	<li>
 		<a href="https://www.youtube.com/watch?v={cat.id}">

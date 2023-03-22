@@ -7,6 +7,7 @@ title: $env/static/public
 `.env` にある2つのパブリックな環境変数に値を追加します。
 
 ```env
+/// file: .env
 PUBLIC_THEME_BACKGROUND=+++"steelblue"+++
 PUBLIC_THEME_FOREGROUND=+++"bisque"+++
 ```

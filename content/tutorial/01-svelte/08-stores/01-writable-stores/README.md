@@ -6,11 +6,12 @@ title: Writable stores
 
 Svelte では、これを *ストア* で行います。ストアとは、単に、値が変化するたびに関係者に通知する`subscribe` メソッドを備えたオブジェクトです。`App.svelte` の `count` はストアであり、`count.subscribe` のコールバックの中で `count_value` を設定しています。
 
-`stores.js` タブをクリックして `count` の定義を見てください。これは書き込み可能なストアです。つまり、 `subscribe` メソッドに加えて、`set` と `update` メソッドも兼ね備えています。
+`stores.js` を開いて `count` の定義を見てください。これは書き込み可能なストアです。つまり、 `subscribe` メソッドに加えて、`set` と `update` メソッドも兼ね備えています。
 
-次に、`Incrementer.svelte` タブに移動して、`+` ボタンと連動するようにします。
+次に、`Incrementer.svelte` で、`+` ボタンと連動するようにします。
 
 ```js
+/// file: Incrementer.svelte
 function increment() {
 	count.update((n) => n + 1);
 }
@@ -21,6 +22,7 @@ function increment() {
 最後に、`Resetter.svelte` で `reset` を実装します。
 
 ```js
+/// file: Resetter.svelte
 function reset() {
 	count.set(0);
 }

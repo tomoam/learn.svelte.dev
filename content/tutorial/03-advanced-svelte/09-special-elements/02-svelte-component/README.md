@@ -5,6 +5,7 @@ title: <svelte:component>
 コンポーネントは `<svelte:component>` でカテゴリを完全に変更することができます。一連の `if` ブロックの代わりに…
 
 ```svelte
+/// file: App.svelte
 {#if selected.color === 'red'}
 	<RedThing/>
 {:else if selected.color === 'green'}
@@ -17,6 +18,7 @@ title: <svelte:component>
 …我々は単一の動的なコンポーネントを持つことができます。
 
 ```svelte
+/// file: App.svelte
 <svelte:component this={selected.component}/>
 ```
 

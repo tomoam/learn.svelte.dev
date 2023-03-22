@@ -32,6 +32,7 @@ export function load() {
 このデータは `src/routes/blog/+page.svelte` で `data` プロパティを介してアクセスすることができます。
 
 ```svelte
+/// file: src/routes/blog/+page.svelte
 +++<script>
 	export let data;
 </script>+++

@@ -5,6 +5,7 @@ title: Each block bindings
 `each` ブロック内のプロパティにバインドすることもできます。
 
 ```svelte
+/// file: App.svelte
 {#each todos as todo}
 	<input
 		type=checkbox

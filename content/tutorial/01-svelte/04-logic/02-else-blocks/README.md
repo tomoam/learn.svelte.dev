@@ -5,6 +5,7 @@ title: Else blocks
 2つの条件（`if user.loggedIn` と `if !user.loggedIn`）は相互に排他的なので、`else` ブロックを使用することでこのコンポーネントを少しシンプルにすることができます。
 
 ```svelte
+/// file: App.svelte
 {#if user.loggedIn}
 	<button on:click={toggle}>
 		Log out

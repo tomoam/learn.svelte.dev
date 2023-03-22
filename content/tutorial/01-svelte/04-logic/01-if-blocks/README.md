@@ -7,6 +7,7 @@ HTML には条件式やループのような *ロジック* を表現する方�
 条件付きでマークアップをレンダリングするために、私たちはそれを `if` ブロックで囲みます。
 
 ```svelte
+/// file: App.svelte
 +++{#if user.loggedIn}+++
 	<button on:click={toggle}>
 		Log out

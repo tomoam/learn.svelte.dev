@@ -5,6 +5,7 @@ title: Dimensions
 全てのブロックレベル要素は `clientWidth`、 `clientHeight`、`offsetWidth`、`offsetHeight` バインディングを備えています:
 
 ```svelte
+/// file: App.svelte
 <div bind:clientWidth={w} bind:clientHeight={h}>
 	<span style="font-size: {size}px">{text}</span>
 </div>

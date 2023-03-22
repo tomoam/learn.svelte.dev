@@ -5,6 +5,7 @@ title: Adding parameters
 トランジション関数はパラメータを受け取ることができます。`fade` トランジションを `fly` に置き換えてください。
 
 ```svelte
+/// file: App.svelte
 <script>
 	import { +++fly+++ } from 'svelte/transition';
 	let visible = true;
@@ -14,6 +15,7 @@ title: Adding parameters
 そして、`<p>` にいくつかのオプションと一緒にパラメータを設定してください。
 
 ```svelte
+/// file: App.svelte
 <p transition:+++fly={{ y: 200, duration: 2000 }}+++>
 	+++Flies+++ in and out
 </p>

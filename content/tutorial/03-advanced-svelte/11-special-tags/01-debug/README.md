@@ -7,6 +7,7 @@ title: The @debug tag
 1つの方法は、マークアップの中で `console.log(....)` を使用することです。しかし、実行を一時停止したい場合は、`{@debug ...}`タグを使用して、検査したい値をカンマで区切ったリストで指定することができます。
 
 ```svelte
+/// file: App.svelte
 {@debug user}
 
 <h1>Hello {user.firstname}!</h1>

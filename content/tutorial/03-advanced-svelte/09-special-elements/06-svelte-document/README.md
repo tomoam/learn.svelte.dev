@@ -6,7 +6,8 @@ title: <svelte:document>
 
 `<svelte:document>` タグに `selectionchange` ハンドラを追加してください。
 
-```html
+```svelte
+/// file: App.svelte
 <svelte:document on:selectionchange={handleSelectionChange} />
 ```
 

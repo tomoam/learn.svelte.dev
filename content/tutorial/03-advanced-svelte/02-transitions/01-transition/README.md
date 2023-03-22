@@ -7,6 +7,7 @@ title: The transition directive
 まず、`svelte/transition` から `fade` 関数をインポートします。
 
 ```svelte
+/// file: App.svelte
 <script>
 	+++import { fade } from 'svelte/transition';+++
 	let visible = true;
@@ -16,5 +17,6 @@ title: The transition directive
 次に、それを `<p>` 要素に追加します。
 
 ```svelte
+/// file: App.svelte
 <p +++transition:fade+++>Fades in and out</p>
 ```

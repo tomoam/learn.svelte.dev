@@ -7,6 +7,7 @@ Svelte のリアクティビティは代入によってトリガーされるた�
 これを修正する方法の1つとして、冗長に見えるかもしれませんが、代入を追加することです。
 
 ```js
+/// file: App.svelte
 function addNumber() {
 	numbers.push(numbers.length + 1);
 	+++numbers = numbers;+++
@@ -16,6 +17,7 @@ function addNumber() {
 もう少し慣用的な解決策もあります。
 
 ```js
+/// file: App.svelte
 function addNumber() {
 	numbers = +++[...numbers, numbers.length + 1];+++
 }
@@ -26,6 +28,7 @@ function addNumber() {
 配列やオブジェクトの *プロパティ* への代入（例：`obj.foo += 1` や `array[i] = x`）は値自体への代入と同じように動作します。
 
 ```js
+/// file: App.svelte
 function addNumber() {
 	numbers[numbers.length] = numbers.length + 1;
 }
@@ -34,6 +37,7 @@ function addNumber() {
 大まかなまとめ: 更新される変数の名前は、代入の左側に置かなければならない。例えばこれは…
 
 ```js
+/// no-file
 const foo = obj.foo;
 foo.bar = 'baz';
 ```

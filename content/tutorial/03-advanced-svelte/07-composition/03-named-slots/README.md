@@ -7,6 +7,7 @@ title: Named slots
 `ContactCard.svelte` の各スロットに `name` 属性を追加します。
 
 ```svelte
+/// file: ContactCard.svelte
 <article class="contact-card">
 	<h2>
 		<slot name="name">
@@ -31,6 +32,7 @@ title: Named slots
 そして、対応する `slot="...."` 属性を持つ要素を `<ContactCard>` コンポーネント内に追加します。
 
 ```svelte
+/// file: App.svelte
 <ContactCard>
 	<span slot="name">
 		P. Sherman

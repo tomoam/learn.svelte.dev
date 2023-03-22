@@ -7,6 +7,7 @@ title: Dynamic attributes
 画像 (image) に `src` がありません。これを追加してみましょう。
 
 ```svelte
+/// file: App.svelte
 <img +++src={src}+++ />
 ```
 
@@ -19,6 +20,7 @@ Webアプリケーションは、例えば視覚や動作に障害のある方�
 この場合、スクリーンリーダー(画面読み上げソフト)を使用するユーザーやインターネット回線が低速・不安定で画像をダウンロードできないユーザーに必要な`alt`という画像を説明する属性が足りていません。追加しましょう。
 
 ```svelte
+/// file: App.svelte
 <img src={src} +++alt="A man dances."+++ />
 ```
 
@@ -29,5 +31,6 @@ Webアプリケーションは、例えば視覚や動作に障害のある方�
 `src={src}`のように、属性の名前と値の変数が一致することは珍しくありません。このような場合、Svelteでは省略して書くことができます。
 
 ```svelte
+/// file: App.svelte
 <img +++{src}+++ alt="A man dances." />
 ```

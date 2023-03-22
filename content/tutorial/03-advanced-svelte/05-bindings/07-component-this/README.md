@@ -5,19 +5,23 @@ title: Binding to component instances
 DOM要素にバインドできるのと同じように、コンポーネントのインスタンス自体にもバインドできます。たとえば、DOM要素をバインドするときと同じように、`<InputField>` のインスタンスを `field` 変数にバインドすることができます。
 
 ```svelte
+/// file: App.svelte
 <script>
-	let field;
+	import InputField from './InputField.svelte';
+
+	+++let field;+++
 </script>
 
-<InputField bind:this={field} />
+<InputField +++bind:this={field}+++ />
 ```
 
 これで、`field` を使って、このコンポーネントをプログラムで操作できるようになりました。
 
 ```svelte
-<button on:click="{() => field.focus()}">
+/// file: App.svelte
+<button +++on:click={() => field.focus()}+++>
 	Focus field
 </button>
 ```
 
-> なお、ボタンが最初にレンダリングされたとき、fieldは未定義であり、エラーが発生するため、`{field.focus}` をすることはできません。
+> なお、ボタンが最初にレンダリングされたとき、`field` は未定義であるため、`{field.focus}` を行うことはできません。

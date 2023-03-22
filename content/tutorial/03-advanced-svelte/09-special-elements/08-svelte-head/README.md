@@ -5,6 +5,7 @@ title: <svelte:head>
 `<svelte:head>` 要素を使うと、ドキュメントの `<head>` 内に要素を挿入することができます。
 
 ```svelte
+/// file: App.svelte
 <svelte:head>
 	<link rel="stylesheet" href="tutorial/dark-theme.css">
 </svelte:head>

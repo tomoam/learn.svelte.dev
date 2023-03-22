@@ -9,6 +9,7 @@ title: Local transitions
 これを実現するには、*ローカル* トランジションを使用します。これは、自身にトランジションを持つブロックが追加されたり削除されたりしたときにのみ再生されます。
 
 ```svelte
+/// file: App.svelte
 <div transition:slide+++|local+++>
 	{item}
 </div>

@@ -103,6 +103,19 @@ export function get_exercise(slug) {
 			const b = walk(`${dir}/app-b`);
 			const has_solution = Object.keys(b).length > 0;
 
+			// ensure no duplicate content
+			for (const key in b) {
+				if (!a[key]) continue;
+				if (b[key].type !== 'file') continue;
+
+				const a_ = /** @type {import('$lib/types').FileStub} */ (a[key]);
+				const b_ = /** @type {import('$lib/types').FileStub} */ (b[key]);
+
+				if (a_.contents === b_.contents) {
+					throw new Error(`duplicate file: ${exercise_slug} ${key}`)
+				}
+			}
+
 			const part_meta = json(`content/tutorial/${part_dir}/meta.json`);
 			const chapter_meta = json(`content/tutorial/${part_dir}/${chapter_dir}/meta.json`);
 
@@ -110,11 +123,6 @@ export function get_exercise(slug) {
 			const exercise_meta = fs.existsSync(exercise_meta_file) ? json(exercise_meta_file) : {};
 
 			const scope = chapter_meta.scope ?? part_meta.scope;
-			const filenames = new Set(
-				Object.keys(a)
-					.filter((filename) => filename.startsWith(scope.prefix) && a[filename].type === 'file')
-					.map((filename) => filename.slice(scope.prefix.length))
-			);
 
 			const text = fs.readFileSync(`${dir}/README.md`, 'utf-8');
 			const { frontmatter, markdown } = extract_frontmatter(text, dir);
@@ -182,6 +190,27 @@ export function get_exercise(slug) {
 					solution[stub.name] = stub;
 				}
 			}
+
+			// ensure every code block for an exercise with multiple files has a `/// file:` annotation
+			const filtered = Object.values(solution).filter(item => {
+				return item.type === 'file' && item.name.startsWith(scope.prefix);
+			});
+
+			if (filtered.length > 0) {
+				for (const match of markdown.matchAll(/```[a-z]+\n([\s\S]+?)\n```/g)) {
+					const content = match[1];
+					if (!content.includes('/// file') && !content.includes('/// no-file')) {
+						throw new Error(`Code block lacks a \`/// file: ...\` annotation: ${dir}/README.md`);
+					}
+				}
+			}
+
+			const all_files = { ...a, ...solution };
+			const filenames = new Set(
+				Object.keys(all_files)
+					.filter((filename) => filename.startsWith(scope.prefix) && all_files[filename].type === 'file')
+					.map((filename) => filename.slice(scope.prefix.length))
+			);
 
 			return {
 				part: {

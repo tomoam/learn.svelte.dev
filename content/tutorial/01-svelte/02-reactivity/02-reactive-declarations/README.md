@@ -7,6 +7,7 @@ Svelte は、コンポーネントの状態が変更されると自動的に DOM
 これに対応するために、 _リアクティブ宣言(reactive declarations)_ があります。次のように記述します。
 
 ```js
+/// file: App.svelte
 let count = 0;
 +++$: doubled = count * 2;+++
 ```
@@ -16,6 +17,7 @@ let count = 0;
 マークアップで `doubled` を使ってみましょう。
 
 ```svelte
+/// file: App.svelte
 <button>...</button>
 
 +++<p>{count} doubled is {doubled}</p>+++

@@ -5,10 +5,11 @@ title: Component events
 コンポーネントはイベントを発信することもできます。そのためには、イベントディスパッチャを作成する必要があります。`Inner.svelte` を更新してください。
 
 ```svelte
+/// file: Inner.svelte
 <script>
-	import { createEventDispatcher } from 'svelte';
+	+++import { createEventDispatcher } from 'svelte';+++
 
-	const dispatch = createEventDispatcher();
+	+++const dispatch = createEventDispatcher();+++
 
 	function sayHello() {
 		dispatch('message', {
@@ -20,8 +21,11 @@ title: Component events
 
 > `createEventDispatcher` はコンポーネントを最初にインスタンス化するときに呼び出す必要があります。（後から `setTimeout` のコールバックなどの内側で呼び出すことはできません。）これにより `dispatch` をコンポーネントインスタンスに関連づけます。
 
-`App` コンポーネントは `Inner` コンポーネントによってディスパッチされたメッセージを `on:message` ディレクティブによって受信していることに注目してください。このディレクティブは、`on:` の前にディスパッチするイベント名(この場合は `message`)を付加した属性です。
+それから、`App.svelte` に `on:message` ハンドラを追加します:
 
-この属性がない場合、メッセージはディスパッチされますが、アプリはそれに反応しません。`on:message`属性を削除して、もう一度ボタンを押してみてください。
+```svelte
+/// file: App.svelte
+<Inner +++on:message={handleMessage}+++ />
+```
 
-> イベント名を他のものに変更してみることもできます。例えば、`Inner.svelte` の `dispatch('message')` を `dispatch('myevent')` に変更し、`App.svelte` コンポーネントの属性名を `on:message` から `on:myevent` に変更します。
+> イベント名を他のものに変更してみることもできます。例えば、`Inner.svelte` の `dispatch('message')` を `dispatch('myevent')` に変更し、`App.svelte` の属性名を `on:message` から `on:myevent` に変更します。

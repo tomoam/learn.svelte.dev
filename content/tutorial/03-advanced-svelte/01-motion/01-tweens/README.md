@@ -9,6 +9,7 @@ SvelteKit の基本を学習したので、次は Svelte の高度なテクニ�
 まず `progress` ストアを `tweened` 値に変更してみましょう。
 
 ```svelte
+/// file: App.svelte
 <script>
 	import { +++tweened+++ } from 'svelte/+++motion+++';
 
@@ -19,6 +20,7 @@ SvelteKit の基本を学習したので、次は Svelte の高度なテクニ�
 ボタンをクリックすると、プログレスバーが新しい値にアニメーションします。しかし、これは少し機械的で満足感がありません。イージング機能を追加する必要があります。
 
 ```svelte
+/// file: App.svelte
 <script>
 	import { tweened } from 'svelte/motion';
 	+++import { cubicOut } from 'svelte/easing';+++

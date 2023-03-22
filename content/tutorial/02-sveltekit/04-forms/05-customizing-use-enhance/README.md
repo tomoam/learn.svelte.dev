@@ -38,6 +38,7 @@ export const actions = {
 …そして1つ目の `use:enhance` の内側で、`creating` を切り替えます。
 
 ```svelte
+/// file: src/routes/+page.svelte
 <form
 	method="POST"
 	action="?/create"
@@ -65,6 +66,7 @@ export const actions = {
 削除の場合、サーバーがなにか検証するのを待つ必要はありません — すぐに UI を更新することができます。
 
 ```svelte
+/// file: src/routes/+page.svelte
 <ul>
 	{#each +++data.todos.filter((todo) => !deleting.includes(todo.id))+++ as todo (todo.id)}
 		<li class="todo" in:fly={{ y: 20 }} out:slide>

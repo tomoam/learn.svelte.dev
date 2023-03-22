@@ -13,6 +13,7 @@ context API は `setContext` と `getContext` に分かれます。もしコン�
 まずは context を設定してみましょう。`Map.svelte` では、`svelte` から `setContext` をインポートし、`mapbox.js` から `key` をインポートして、`setContext` を呼び出します。
 
 ```js
+/// file: Map.svelte
 import { onMount, setContext } from 'svelte';
 import { mapbox, key } from './mapbox.js';
 
@@ -26,6 +27,7 @@ context オブジェクトはなんでも構いません。[ライフサイク�
 一方、`MapMarker.svelte` では、Mapbox インスタンスへの参照を取得できるようになりました。
 
 ```js
+/// file: MapMarker.svelte
 import { getContext } from 'svelte';
 import { mapbox, key } from './mapbox.js';
 
@@ -42,6 +44,7 @@ const map = getMap();
 `mapbox.js`にはこの一行が含まれています。
 
 ```js
+/// file: mapbox.js
 const key = {};
 ```
 
@@ -54,5 +57,6 @@ context とストアは似ているように見えます。ストアはアプリ
 実際には、この2つを一緒に使うこともあるかもしれません。context はリアクティブではないので、時間の経過とともに変化する値はストアとして表現する必要があります。
 
 ```js
+/// no-file
 const { these, are, stores } = getContext(...);
 ```

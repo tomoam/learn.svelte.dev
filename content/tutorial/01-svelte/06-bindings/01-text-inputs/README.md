@@ -9,6 +9,7 @@ title: Text inputs
 代わりに、`bind:value`を使用することができます。
 
 ```svelte
+/// file: App.svelte
 <input bind:value={name}>
 ```
 

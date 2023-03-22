@@ -7,7 +7,8 @@ title: Auto-subscriptions
 まず、`App.svelte` で `unsubscribe` を宣言します。
 
 ```js
-const unsubscribe = count.subscribe((value) => {
+/// file: App.svelte
++++const unsubscribe =+++ count.subscribe((value) => {
 	count_value = value;
 });
 ```
@@ -17,8 +18,9 @@ const unsubscribe = count.subscribe((value) => {
 `unsubscribe` が宣言されましたが、さらに、例えば `onDestroy` [lifecycle hook](/tutorial/ondestroy) などで呼び出される必要があります。
 
 ```svelte
+/// file: App.svelte
 <script>
-	import { onDestroy } from 'svelte';
+	+++import { onDestroy } from 'svelte';+++
 	import { count } from './stores.js';
 	import Incrementer from './Incrementer.svelte';
 	import Decrementer from './Decrementer.svelte';
@@ -30,7 +32,7 @@ const unsubscribe = count.subscribe((value) => {
 		count_value = value;
 	});
 
-	onDestroy(unsubscribe);
+	+++onDestroy(unsubscribe);+++
 </script>
 
 <h1>The count is {count_value}</h1>
@@ -39,14 +41,24 @@ const unsubscribe = count.subscribe((value) => {
 ただし、このやり方は、特にコンポーネントが複数のストアにサブスクライブしている場合に、少し定型的になり始めます。代わりに、Svelte には巧妙な工夫が施されています。ストア名の前に `$` を付けることで、ストアの値を参照できます。
 
 ```svelte
+/// file: App.svelte
 <script>
+	---import { onDestroy } from 'svelte';---
 	import { count } from './stores.js';
 	import Incrementer from './Incrementer.svelte';
 	import Decrementer from './Decrementer.svelte';
 	import Resetter from './Resetter.svelte';
+
+	---let count_value;---
+
+	---const unsubscribe = count.subscribe(value => {
+		count_value = value;
+	});---
+
+	---onDestroy(unsubscribe);---
 </script>
 
-<h1>The count is {$count}</h1>
+<h1>The count is {+++$count+++}</h1>
 ```
 
 > 自動サブスクリプションは、コンポーネントの最上位スコープで宣言（またはインポート）されたストア変数でのみ機能します。
