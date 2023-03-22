@@ -7,6 +7,7 @@ title: Declaring props
 実際のアプリケーションでは、あるコンポーネントから、その子コンポーネントにデータを渡す必要があります。そのためには、*プロパティ(properties)*を宣言する必要があります。通常は 'props'と省略されます。Svelteでは、`export`というキーワードを使用してこれを行います。`Nested.svelte`コンポーネントを編集してみましょう。
 
 ```svelte
+/// file: Nested.svelte
 <script>
 	+++export+++ let answer;
 </script>

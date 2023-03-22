@@ -7,6 +7,7 @@ Key ブロックは、式の値が変更されたときにその中身を破棄�
 ここでは例えば、`transition.js` の `typewriter` トランジションを、ローディングメッセージが変わる度に再生させたいと思います。`<p>` 要素を key ブロックで囲みます。
 
 ```svelte
+/// file: App.svelte
 +++{#key i}+++
 	<p in:typewriter={{ speed: 10 }}>
 		{messages[i] || ''}

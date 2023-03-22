@@ -7,18 +7,21 @@ title: Group inputs
 各inputに`bind:group`を追加しましょう。
 
 ```svelte
+/// file: App.svelte
 <input type=radio bind:group={scoops} name="scoops" value={1}>
 ```
 
 この場合、チェックボックスinputを`each`ブロックに移動させることでコードをよりシンプルにすることができます。まず、`<script>`ブロックに`menu`変数を追加します。
 
 ```js
+/// file: App.svelte
 let menu = ['Cookies and cream', 'Mint choc chip', 'Raspberry ripple'];
 ```
 
 …それから2つ目のセクションを置き換えます。
 
 ```svelte
+/// file: App.svelte
 <h2>Flavours</h2>
 
 {#each menu as flavour}

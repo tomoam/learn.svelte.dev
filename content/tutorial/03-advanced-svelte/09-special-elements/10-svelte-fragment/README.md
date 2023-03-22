@@ -6,8 +6,8 @@ title: <svelte:fragment>
 
 例では box クラスに `1em` の gap を持つ flex レイアウトを適用しています。
 
-```sv
-<!-- Box.svelte -->
+```svelte
+/// file: Box.svelte
 <div class="box">
 	<slot name="header">No header was provided</slot>
 	<p>Some content between header and footer</p>
@@ -27,7 +27,8 @@ title: <svelte:fragment>
 
 これは `App` コンポーネントの `<div slot="footer">` を書き換えることで解決できます。この `<div>` を `<svelte:fragment>` に書き換えます。
 
-```sv
+```svelte
+/// file: App.svelte
 <svelte:fragment slot="footer">
 	<p>All rights reserved.</p>
 	<p>Copyright (c) 2019 Svelte Industries</p>

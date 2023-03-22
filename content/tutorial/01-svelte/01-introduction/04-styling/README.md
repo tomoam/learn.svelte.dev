@@ -5,6 +5,7 @@ title: Styling
 HTMLと同じように、コンポーネントには`<style>`タグを置くことができます。`<p>`要素にいくつかスタイルを追加してみましょう。
 
 ```svelte
+/// file: App.svelte
 <p>This is a paragraph.</p>
 
 <style>

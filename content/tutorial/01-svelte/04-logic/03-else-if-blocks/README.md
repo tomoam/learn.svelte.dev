@@ -5,6 +5,7 @@ title: Else-if blocks
 複数の条件を `else if` と一緒に '連結' することができます。
 
 ```svelte
+/// file: App.svelte
 {#if x > 10}
 	<p>{x} is greater than 10</p>
 {:+++else if+++ 5 > x}

@@ -80,6 +80,7 @@ SvelteKit では、これを簡単に防ぐことができます。もし `PASSP
 `$env/static/private` にある `static` とは、これらの値がビルド時に解決され、 _静的に置き換えられる_ ということを示しています。これによって最適化が可能になります。
 
 ```js
+/// no-file
 import { FEATURE_FLAG_X } from '$env/static/private';
 
 if (FEATURE_FLAG_X === 'enabled') {

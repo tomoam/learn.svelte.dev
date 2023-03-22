@@ -7,6 +7,7 @@ title: onDestroy
 例えば、コンポーネントの初期化時に `setInterval` 関数を追加し、それが不要になったらそれをクリーンアップすることができます。そうすることでメモリリークを防ぐことができます。
 
 ```svelte
+/// file: Timer.svelte
 <script>
 	import { onDestroy } from 'svelte';
 
@@ -20,6 +21,7 @@ title: onDestroy
 コンポーネントの初期化中にライフサイクル関数を呼び出すことは重要ですが、それらを *どこ* から呼び出すかは重要ではありません。そのため、インターバルロジックを抽象化して `utils.js` のヘルパー関数にすることができます…
 
 ```js
+/// no-file
 import { onDestroy } from 'svelte';
 
 export function onInterval(callback, milliseconds) {
@@ -34,6 +36,7 @@ export function onInterval(callback, milliseconds) {
 …そして、それをコンポーネントにインポートします。
 
 ```svelte
+/// no-file
 <script>
 	import { onInterval } from './utils.js';
 

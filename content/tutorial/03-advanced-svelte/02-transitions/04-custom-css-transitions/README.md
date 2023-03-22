@@ -5,6 +5,7 @@ title: Custom CSS transitions
 `svelte/transition` モジュールにはいくつかのトランジションが組み込まれていますが、独自のトランジションを簡単に作成することができます。例として、これは `fade` トランジションのソースです。
 
 ```js
+/// no-file
 function fade(node, { delay = 0, duration = 400 }) {
 	const o = +getComputedStyle(node).opacity;
 
@@ -31,6 +32,7 @@ function fade(node, { delay = 0, duration = 400 }) {
 たとえば、`fade` トランジションは次のような CSS アニメーションを生成します。
 
 ```css
+/// no-file
 0% {
 	opacity: 0;
 }
@@ -49,6 +51,7 @@ function fade(node, { delay = 0, duration = 400 }) {
 しかし、もっと独創的なものを作れます。本当に余計なトランジションを作ってみましょう。
 
 ```svelte
+/// file: App.svelte
 <script>
 	import { fade } from 'svelte/transition';
 	+++import { elasticOut } from 'svelte/easing';+++

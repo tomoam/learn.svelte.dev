@@ -9,6 +9,7 @@ title: Sharing code
 これを実現するには、`<script context="module">` ブロックを宣言します。ここに含まれるコードは、コンポーネントがインスタンス化されたときではなく、モジュールが最初に評価されたときに一度だけ実行されます。これを `AudioPlayer.svelte` の先頭に配置してください。
 
 ```svelte
+/// file: AudioPlayer.svelte
 <script context="module">
 	let current;
 </script>
@@ -17,6 +18,7 @@ title: Sharing code
 これで状態を管理することなく、コンポーネント同士がお互いに「話す」ことが可能になりました。
 
 ```js
+/// file: AudioPlayer.svelte
 function stopOthers() {
 	if (current && current !== audio) current.pause();
 	current = audio;

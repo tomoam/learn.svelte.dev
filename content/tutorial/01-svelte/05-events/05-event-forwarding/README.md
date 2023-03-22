@@ -6,9 +6,10 @@ DOM イベントとは異なり、コンポーネントのイベントは *バ�
 
 今回のケースでは、[前のチャプタ](/tutorial/component-events)と同じように `App.svelte` と `Inner.svelte` がありますが、`<Inner/>` を含む `Outer.svelte` コンポーネントがあります。
 
-この問題を解決する1つの方法は、`Outer.svelte` に `createEventDispatcher` を追加して、`message` イベントをリッスンして、そのハンドラを作成することです。
+この問題を解決する方法の1つは、`Outer.svelte` に `createEventDispatcher` を追加して、`message` イベントをリッスンして、そのハンドラを作成することです。
 
 ```svelte
+/// file: Outer.svelte
 <script>
 	import Inner from './Inner.svelte';
 	import { createEventDispatcher } from 'svelte';
@@ -26,6 +27,7 @@ DOM イベントとは異なり、コンポーネントのイベントは *バ�
 しかし、これでは書くコードが多いので、Svelte は同等のショートハンドを提供します。値のない `on:message` イベントディレクティブは「全ての `message` イベントをフォワードする」ことを意味します。
 
 ```svelte
+/// file: Outer.svelte
 <script>
 	import Inner from './Inner.svelte';
 </script>

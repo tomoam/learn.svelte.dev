@@ -5,6 +5,7 @@ title: Component bindings
 DOM 要素のプロパティにバインドできるのと同様に、コンポーネントの props にもバインドできます。例えば、フォーム要素のように `<Keypad>` コンポーネントの `value` prop にバインドすることができます。
 
 ```svelte
+/// file: App.svelte
 <Keypad
 	+++bind:value={pin}+++
 	on:submit={handleSubmit}

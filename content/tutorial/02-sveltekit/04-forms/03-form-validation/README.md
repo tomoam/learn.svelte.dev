@@ -7,6 +7,7 @@ title: Validation
 第一防衛ラインは、ブラウザに[組み込まれたフォームバリデーション(built-in form validation)](https://developer.mozilla.org/ja/docs/Learn/Forms/Form_validation#%E7%B5%84%E3%81%BF%E8%BE%BC%E3%81%BF%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E6%A4%9C%E8%A8%BC%E3%81%AE%E5%88%A9%E7%94%A8)で、これによって、例えば `<input>` を必須項目としてマークすることが簡単に行えます。
 
 ```svelte
+/// file: src/routes/+page.svelte
 <form method="POST" action="?/create">
 	<label>
 		Add a todo

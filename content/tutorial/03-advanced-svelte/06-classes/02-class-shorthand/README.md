@@ -5,6 +5,7 @@ title: Shorthand class directive
 多くの場合、クラスの名前はそれが依存する値の名前と同じになります。
 
 ```svelte
+/// file: App.svelte
 <div class:big={big}>
 	<!-- ... -->
 </div>
@@ -13,6 +14,7 @@ title: Shorthand class directive
 そのような場合は、ショートハンドを使うことができます。
 
 ```svelte
+/// file: App.svelte
 <div class:big>
 	<!-- ... -->
 </div>

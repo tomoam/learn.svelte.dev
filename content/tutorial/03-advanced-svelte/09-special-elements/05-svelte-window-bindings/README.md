@@ -5,6 +5,7 @@ title: <svelte:window> bindings
 また、`window` の特定のプロパティ、例えば `scrollY` のようなプロパティにバインドすることもできます。7行目を更新してください。
 
 ```svelte
+/// file: App.svelte
 <svelte:window bind:scrollY={y}/>
 ```
 

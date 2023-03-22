@@ -9,6 +9,7 @@ title: Media elements
 62行目に `currentTime={time}`、`duration`、`paused` プロパティを追加しバインドします:
 
 ```svelte
+/// file: App.svelte
 <video
 	poster="https://sveltejs.github.io/assets/caminandes-llamigos.jpg"
 	src="https://sveltejs.github.io/assets/caminandes-llamigos.mp4"

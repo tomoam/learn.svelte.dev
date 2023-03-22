@@ -9,6 +9,7 @@ title: The animate directive
 最初に、`TodoList.svelte` に `flip` 関数（flip は ['First, Last, Invert, Play'](https://aerotwist.com/blog/flip-your-animations/) の略です）を `svelte/animate` からインポートします
 
 ```svelte
+/// file: TodoList.svelte
 <script>
 	+++import { flip } from 'svelte/animate';+++
 	import { send, receive } from './transition.js';
@@ -21,6 +22,7 @@ title: The animate directive
 次に、それを `<label>` 要素に追加します。 
 
 ```svelte
+/// file: TodoList.svelte
 <label
 	in:receive={{ key: todo.id }}
 	out:send={{ key: todo.id }}
@@ -31,6 +33,7 @@ title: The animate directive
 この場合、動きが少し遅いので、`duration` パラメータを追加することができます。
 
 ```svelte
+/// file: TodoList.svelte
 <label
 	in:receive={{ key: todo.id }}
 	out:send={{ key: todo.id }}

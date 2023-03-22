@@ -9,12 +9,14 @@ Svelte でコンポーネントの状態を更新しても、すぐに DOM を�
 この例では、その動作を見ることができます。テキストの範囲を選択してタブキーを押します。`<textarea>` の値が変更されるため、現在の選択範囲がクリアされ、カーソルが最後までジャンプしてしまいます。これは `tick` をインポートすることで修正できます…
 
 ```js
+/// file: App.svelte
 import { tick } from 'svelte';
 ```
 
 …そして `handleKeydown` の最後に `this.selectationStart` と `this.selectationEnd` を設定する直前に実行します。
 
 ```js
+/// file: App.svelte
 await tick();
 this.selectionStart = selectionStart;
 this.selectionEnd = selectionEnd;

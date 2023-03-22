@@ -9,6 +9,7 @@ title: HTML tags
 Svelteでは、`{@html ...}` という特別なタグを使ってこれを行います。
 
 ```svelte
+/// file: App.svelte
 <p>{+++@html+++ string}</p>
 ```
 

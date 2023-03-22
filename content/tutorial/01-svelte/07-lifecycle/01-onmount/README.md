@@ -11,6 +11,7 @@ title: onMount
 `onMount` ハンドラにネットワークからデータを読み込む処理を追加します。
 
 ```svelte
+/// file: App.svelte
 <script>
 	import { onMount } from 'svelte';
 

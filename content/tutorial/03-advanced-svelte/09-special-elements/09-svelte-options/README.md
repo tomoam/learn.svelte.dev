@@ -11,6 +11,7 @@ title: <svelte:options>
 これを `Todo.svelte` ファイルの先頭に追加します。
 
 ```svelte
+/// file: Todo.svelte
 <svelte:options immutable={true}/>
 ```
 

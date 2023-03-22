@@ -7,6 +7,7 @@ title: <svelte:body>
 `<svelte:body>` タグに `mouseenter` と `mouseleave` ハンドラを追加してください。
 
 ```svelte
+/// file: App.svelte
 <svelte:body
 	on:mouseenter={handleMouseenter}
 	on:mouseleave={handleMouseleave}

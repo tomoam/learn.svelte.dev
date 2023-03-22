@@ -7,14 +7,15 @@ title: Custom stores
 たとえば、先ほどの例の `count` ストアに `increment`, `decrement`, `reset` メソッドを含めて、`set` と `update` は公開しないようにできます:
 
 ```js
+/// file: stores.js
 function createCount() {
 	const { subscribe, set, update } = writable(0);
 
 	return {
 		subscribe,
-		increment: () => update((n) => n + 1),
-		decrement: () => update((n) => n - 1),
-		reset: () => set(0)
+		increment: () => +++update((n) => n + 1)+++,
+		decrement: () => +++update((n) => n - 1)+++,
+		reset: () => +++set(0)+++
 	};
 }
 ```

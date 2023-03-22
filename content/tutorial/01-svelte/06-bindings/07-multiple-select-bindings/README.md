@@ -7,6 +7,7 @@ select は `multiple` 属性を持つことができ、その場合は単一の�
 [先ほどのアイスクリームの例](/tutorial/group-inputs)に戻り、チェックボックスを `<select multiple>` で置き換えることができます。
 
 ```svelte
+/// file: App.svelte
 <h2>Flavours</h2>
 
 <select multiple bind:value={flavours}>

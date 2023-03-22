@@ -7,6 +7,7 @@ title: Nested components
 `<script>` タグを追加して `Nested.svelte` をインポートしましょう…
 
 ```svelte
+/// file: App.svelte
 +++<script>
 	import Nested from './Nested.svelte';
 </script>+++
@@ -15,6 +16,7 @@ title: Nested components
 …そして `<Nested />` コンポーネントを使用します。
 
 ```svelte
+/// file: App.svelte
 <p>This is a paragraph.</p>
 +++<Nested />+++
 ```

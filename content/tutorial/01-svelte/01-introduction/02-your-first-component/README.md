@@ -11,6 +11,7 @@ Svelteでは、アプリケーションは1つ以上の*コンポーネント*�
 まず、`script` タグを追加してその中に `name` 変数を宣言します。
 
 ```svelte
+/// file: App.svelte
 +++<script>
 	let name = 'Svelte';
 </script>+++
@@ -21,11 +22,13 @@ Svelteでは、アプリケーションは1つ以上の*コンポーネント*�
 次に、マークアップから `name` を参照します。
 
 ```svelte
+/// file: App.svelte
 <h1>Hello +++{name}+++!</h1>
 ```
 
 中括弧`{}`の中にはJavaScriptのコードを置くことができます。中括弧の中の `name` を `name.toUpperCase()` に置き換えてみましょう。
 
 ```svelte
+/// file: App.svelte
 <h1>Hello {name+++.toUpperCase()+++}!</h1>
 ```

@@ -11,23 +11,34 @@ title: The use directive
 
 このアプリでは、オレンジ色のモーダルを、その外側をクリックしたときに閉じるようにしたいと思います。このアプリには `outclick` イベント用のイベントハンドラがありますが、これはネイティブの DOM イベントではありません。このイベントを自分でディスパッチする必要があります。まず、`clickOutside` 関数をインポートします…
 
-```js
-import { clickOutside } from './click_outside.js';
+```svelte
+/// file: App.svelte
+<script>
+	+++import { clickOutside } from './actions.js';+++
+
+	let showModal = true;
+</script>
 ```
 
 …そして、それを要素と一緒に使用します。
 
 ```svelte
-<div class="box" use:clickOutside on:outclick="{() => (showModal = false)}">
+/// file: App.svelte
+<div
+	class="box"
+	+++use:clickOutside+++
+	on:outclick={() => (showModal = false)}
+>
 	Click outside me!
 </div>
 ```
 
-`click_outside.js` ファイルを開きます。トランジション関数と同様に、アクション関数は `node` (アクションが適用される要素) といくつかのオプションのパラメータを受け取り、アクションオブジェクトを返します。このオブジェクトは `destroy` 関数を持つことができ、要素がマウントされていないときに呼び出されます。
+`actions.js` ファイルを開きます。トランジション関数と同様に、アクション関数は `node` (アクションが適用される要素) といくつかのオプションのパラメータを受け取り、アクションオブジェクトを返します。このオブジェクトは `destroy` 関数を持つことができ、要素がマウントされていないときに呼び出されます。
 
 ユーザがオレンジ色のボックスの外側をクリックしたときに、`outclick` イベントを発生させたいと考えています。考えられる実装の1つは以下のようになります。
 
 ```js
+/// file: actions.js
 export function clickOutside(node) {
 	const handleClick = (event) => {
 		if (!node.contains(event.target)) {

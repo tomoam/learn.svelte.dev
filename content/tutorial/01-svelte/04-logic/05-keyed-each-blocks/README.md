@@ -11,6 +11,7 @@ title: Keyed each blocks
 そのためには、`each` ブロックに一意な識別子 (または"key") を指定します。
 
 ```svelte
+/// file: App.svelte
 {#each things as thing (+++thing.id+++)}
 	<Thing name={thing.name}/>
 {/each}

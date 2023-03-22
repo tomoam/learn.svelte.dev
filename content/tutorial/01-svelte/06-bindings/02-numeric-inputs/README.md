@@ -7,6 +7,7 @@ DOMの中では、全てが文字列(string)です。これは、数値のinput�
 `bind:value`を使用すれば、Svelteがそれを代行してくれます。
 
 ```svelte
+/// file: App.svelte
 <input type=number bind:value={a} min=0 max=10>
 <input type=range bind:value={a} min=0 max=10>
 ```

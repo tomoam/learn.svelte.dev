@@ -5,6 +5,7 @@ title: Event modifiers
 DOM イベントハンドラには、それらの動作を変更する修飾子（*modifiers*）を設定することができます。たとえば、`once` 修飾子をハンドラに設定すると、1回だけ実行します。
 
 ```svelte
+/// file: App.svelte
 <script>
 	function handleClick() {
 		alert(+++'no more alerts'+++)

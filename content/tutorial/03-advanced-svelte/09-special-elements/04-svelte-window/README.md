@@ -7,6 +7,7 @@ title: <svelte:window>
 11行目に `keydown` リスナーを追加します。
 
 ```svelte
+/// file: App.svelte
 <svelte:window on:keydown={handleKeydown}/>
 ```
 

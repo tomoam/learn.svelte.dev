@@ -9,6 +9,7 @@ title: beforeUpdate and afterUpdate
 この[Eliza](https://en.wikipedia.org/wiki/ELIZA)のチャットボットは、チャットウィンドウをスクロールし続けなければならないので、使うのが面倒です。そこを直しましょう。
 
 ```js
+/// file: App.svelte
 let div;
 let autoscroll;
 

@@ -13,18 +13,20 @@ title: Checking for slot content
 `Project.svelte`において、`<article>`の `class:has-discussion` ディレクティブを更新してください。
 
 ```svelte
-<article class:has-discussion={$$slots.comments}>
+/// file: Project.svelte
+<article class:has-discussion={+++$$slots.comments+++}>
 ```
 
 次に、`comments` スロットとそれを囲んでいる `<div>` を `$$slots` をチェックする `if` ブロックで囲みます。
 
 ```svelte
-{#if $$slots.comments}
+/// file: Project.svelte
++++{#if $$slots.comments}+++
 	<div class="discussion">
 		<h3>Comments</h3>
 		<slot name="comments"></slot>
 	</div>
-{/if}
++++{/if}+++
 ```
 
 これで、`<App>` の `comments` スロットが空の時は、コメントコンテナと通知ドットがレンダリングされなくなりました。

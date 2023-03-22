@@ -5,6 +5,7 @@ title: Custom JS transitions
 一般に、トランジションには可能な限りCSSを用いるべきですが、いくつかのトランジション効果に関してはJavaScriptを用いないと実現できません。その一例がタイプライター効果です。
 
 ```js
+/// file: App.svelte
 function typewriter(node, { speed = 1 }) {
 	const valid = node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE;
 

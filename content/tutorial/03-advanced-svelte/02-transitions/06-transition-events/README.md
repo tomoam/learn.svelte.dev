@@ -5,6 +5,7 @@ title: Transition events
 トランジションの開始と終了のタイミングを知ることができれば便利です。Svelteは他のDOMイベントと同様にリッスンすることができるイベントをディスパッチします。
 
 ```svelte
+/// file: App.svelte
 <p
 	transition:fly={{ y: 200, duration: 2000 }}
 	+++on:introstart={() => status = 'intro started'}

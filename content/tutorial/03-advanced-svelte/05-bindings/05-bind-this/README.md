@@ -5,6 +5,7 @@ title: This
 読み取り専用の `this` バインディングは全要素（および 全コンポーネント）に適用され、レンダリングされた要素を参照することができます。例えば、`<canvas>` 要素への参照を得られます:
 
 ```svelte
+/// file: App.svelte
 <canvas
 	bind:this={canvas}
 	width={32}

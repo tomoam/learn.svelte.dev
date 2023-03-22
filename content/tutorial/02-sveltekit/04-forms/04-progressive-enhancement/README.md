@@ -21,10 +21,12 @@ title: Progressive enhancement
 …そして `use:enhance` ディレクティブを `<form>` 要素に追加します。
 
 ```svelte
+/// file: src/routes/+page.svelte
 <form method="POST" action="?/create" +++use:enhance+++>
 ```
 
 ```svelte
+/// file: src/routes/+page.svelte
 <form method="POST" action="?/delete" +++use:enhance+++>
 ```
 
@@ -49,5 +51,6 @@ title: Progressive enhancement
 ```
 
 ```svelte
+/// file: src/routes/+page.svelte
 <li class="todo" +++in:fly={{ y: 20 }} out:slide+++>...</li>
 ```

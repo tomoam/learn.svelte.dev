@@ -5,6 +5,7 @@ title: Spread props
 オブジェクトがプロパティを持っている場合、それぞれ個別に指定する代わりに、コンポーネントに '展開'することができます。
 
 ```svelte
+/// file: App.svelte
 <PackageInfo +++{...pkg}+++/>
 ```
 

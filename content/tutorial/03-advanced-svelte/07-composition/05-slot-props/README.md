@@ -7,6 +7,7 @@ title: Slot props
 これには *slotプロパティ(slot props)* を使います。`Hoverable.svelte` の中で `hovering` の値をスロットに渡します。
 
 ```svelte
+/// file: Hoverable.svelte
 <div on:mouseenter={enter} on:mouseleave={leave}>
 	<slot hovering={hovering}></slot>
 </div>
@@ -17,6 +18,7 @@ title: Slot props
 そして `<Hoverable>` コンポーネントの内容に `hovering` を公開するには、`let` ディレクティブを使います。
 
 ```svelte
+/// file: App.svelte
 <Hoverable let:hovering={hovering}>
 	<div class:active={hovering}>
 		{#if hovering}
@@ -31,6 +33,7 @@ title: Slot props
 必要に応じて変数の名前を変更することができます。親コンポーネントでは `active` と呼ぶようにしましょう。
 
 ```svelte
+/// file: App.svelte
 <Hoverable let:hovering={active}>
 	<div class:active>
 		{#if active}

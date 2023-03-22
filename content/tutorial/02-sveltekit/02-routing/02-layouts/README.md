@@ -6,11 +6,11 @@ title: Layouts
 
 このアプリには2つのルート(routes) `src/routes/+page.svelte` と `src/routes/about/+page.svelte` があり、どちらにも同じナビゲーション UI があります。新たに `src/routes/+layout.svelte` ファイルを作成してみましょう…
 
-```diff
+```
 src/routes/
 ├ about/
 │ └ +page.svelte
-+├ +layout.svelte
++++├ +layout.svelte+++
 └ +page.svelte
 ```
 
