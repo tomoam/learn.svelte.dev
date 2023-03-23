@@ -4,7 +4,7 @@ title: Nested components
 
 アプリ全体を単一のコンポーネントにまとめるのは現実的ではありません。代わりに、他のファイルからコンポーネントをインポートし、マークアップでそれを使用することができます。
 
-`<script>` タグを追加して `Nested.svelte` をインポートしましょう…
+`<script>` タグを `App.svelte` の上部に追加して `Nested.svelte` をインポートしましょう…
 
 ```svelte
 /// file: App.svelte

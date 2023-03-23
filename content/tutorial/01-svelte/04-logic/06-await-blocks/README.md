@@ -6,13 +6,13 @@ title: Await blocks
 
 ```svelte
 /// file: App.svelte
-{#await promise}
++++{#await promise}+++
 	<p>...waiting</p>
-{:then number}
++++{:then number}
 	<p>The number is {number}</p>
 {:catch error}
 	<p style="color: red">{error.message}</p>
-{/await}
+{/await}+++
 ```
 
 > 直近の `promise` だけが処理されるので、他の非同期処理の状態を気にする必要はありません。
@@ -20,7 +20,7 @@ title: Await blocks
 promise が reject できないことがわかっている場合は、`catch` ブロックを省略することができます。また promise が resolve するまで何も表示したくない場合は、最初のブロックを省略することもできます。
 
 ```svelte
-/// file: App.svelte
+/// no-file
 {#await promise then number}
 	<p>The number is {number}</p>
 {/await}

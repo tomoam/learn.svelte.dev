@@ -9,6 +9,9 @@ Svelteの中心には、DOMを（例えば、イベントに応じて）アプ�
 ```svelte
 /// file: App.svelte
 <button +++on:click={increment}+++>
+	Clicked {count}
+	{count === 1 ? 'time' : 'times'}
+</button>
 ```
 
 `increment` 関数の内側で必要なのは `count` の値を変更することだけです。

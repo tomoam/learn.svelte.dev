@@ -8,6 +8,13 @@ DOMの中では、全てが文字列(string)です。これは、数値のinput�
 
 ```svelte
 /// file: App.svelte
-<input type=number bind:value={a} min=0 max=10>
-<input type=range bind:value={a} min=0 max=10>
+<label>
+	<input type="number" +++bind:+++value={a} min="0" max="10" />
+	<input type="range" +++bind:+++value={a} min="0" max="10" />
+</label>
+
+<label>
+	<input type="number" +++bind:+++value={b} min="0" max="10" />
+	<input type="range" +++bind:+++value={b} min="0" max="10" />
+</label>
 ```
