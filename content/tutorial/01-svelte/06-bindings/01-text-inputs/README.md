@@ -10,7 +10,7 @@ title: Text inputs
 
 ```svelte
 /// file: App.svelte
-<input bind:value={name}>
+<input +++bind:+++value={name}>
 ```
 
 これは`name`の値が変更されるとinputの値が更新されるだけでなく、inputの値が変更されると`name`の値が更新されることを意味します。

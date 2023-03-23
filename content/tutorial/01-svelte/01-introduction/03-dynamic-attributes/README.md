@@ -11,7 +11,7 @@ title: Dynamic attributes
 <img +++src={src}+++ />
 ```
 
-これでよくなりました。ただし、まだ警告が表示され続けています。
+これでよくなりました。しかし、エディタの `<img>` をホバーすると、警告が表示されているのがわかります。
 
 > A11y: &lt;img&gt; element should have an alt attribute
 
