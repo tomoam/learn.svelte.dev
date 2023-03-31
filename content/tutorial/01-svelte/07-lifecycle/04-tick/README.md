@@ -10,14 +10,16 @@ Svelte でコンポーネントの状態を更新しても、すぐに DOM を�
 
 ```js
 /// file: App.svelte
-import { tick } from 'svelte';
++++import { tick } from 'svelte';+++
+
+let text = `Select some text and hit the tab key to toggle uppercase`;
 ```
 
 …そして `handleKeydown` の最後に `this.selectationStart` と `this.selectationEnd` を設定する直前に実行します。
 
 ```js
 /// file: App.svelte
-await tick();
++++await tick();+++
 this.selectionStart = selectionStart;
 this.selectionEnd = selectionEnd;
 ```

@@ -6,5 +6,5 @@ title: Checkbox inputs
 
 ```svelte
 /// file: App.svelte
-<input type=checkbox bind:checked={yes}>
+<input type=checkbox +++bind:+++checked={yes}>
 ```
