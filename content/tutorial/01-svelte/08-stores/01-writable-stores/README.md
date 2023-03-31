@@ -13,7 +13,7 @@ Svelte では、これを *ストア* で行います。ストアとは、単に
 ```js
 /// file: Incrementer.svelte
 function increment() {
-	count.update((n) => n + 1);
+	+++count.update((n) => n + 1);+++
 }
 ```
 
@@ -24,6 +24,6 @@ function increment() {
 ```js
 /// file: Resetter.svelte
 function reset() {
-	count.set(0);
+	+++count.set(0);+++
 }
 ```

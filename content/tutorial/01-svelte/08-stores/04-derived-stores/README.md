@@ -8,8 +8,8 @@ title: Derived stores
 /// file: stores.js
 export const elapsed = derived(
     time,
-    ($time) => Math.round(($time - start) / 1000)
+    ($time) => +++Math.round(($time - start) / 1000)+++
 );
 ```
 
-> 複数の入力からストアを作成したり、値を返す代わりに `set` を使用して明示的に値をセットすることができます。（これは非同期で値を取得する場合に役立ちます。）詳細については [API リファレンス](https://svelte.jp/docs#run-time-svelte-store-derived) を参照してください。
+> 複数の input ストアから derived ストアを作成したり、値を返す代わりに `set` を使用して明示的に値をセットすることができます。（これは非同期で値を取得する場合に役立ちます。）詳細については [API リファレンス](https://svelte.jp/docs#run-time-svelte-store-derived) を参照してください。

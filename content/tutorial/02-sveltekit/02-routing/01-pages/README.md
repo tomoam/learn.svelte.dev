@@ -4,11 +4,9 @@ title: Pages
 
 SvelteKit はファイルシステムベースのルーティング(Routing)を採用しており、アプリの _ルート(routes)_ (言い換えると、ユーザーが特定の URL に移動したときにアプリがすべきこと) については、コードベースのディレクトリで定義します。
 
-ルート(routes)は `src/routes` の中に置きます。`+page.svelte` ファイルを含む全てのディレクトリが、アプリのルート(routes)となります。
+`src/routes` 内にあるすべての `+page.svelte` ファイルは、アプリのページを作成します。このアプリでは、現在ページが1つあり (`src/routes/+page.svelte`)、これは `/` にマッピングされます。`/about` に移動すると、404 Not Found error となるでしょう。
 
-このアプリには、現在はルート(route)が1つだけあります。それは `src/routes/+page.svelte` で、`/` にマップされています。
-
-2つ目のルート(route)として、`src/routes/about/+page.svelte` を追加してみましょう。これは `/about` にマップされます。
+それを修正しましょう。2つ目のページとして `src/routes/about/+page.svelte` を追加し、`src/routes/+page.svelte` の内容をコピーし、それで更新します:
 
 ```svelte
 /// file: src/routes/about/+page.svelte
@@ -17,8 +15,8 @@ SvelteKit はファイルシステムベースのルーティング(Routing)を�
 	<a href="/about">about</a>
 </nav>
 
-<h1>about</h1>
-<p>this is the about page.</p>
+<h1>+++about+++</h1>
+<p>this is the +++about+++ page.</p>
 ```
 
 これによって `/` と `/about` の間を移動できるようになりました。
