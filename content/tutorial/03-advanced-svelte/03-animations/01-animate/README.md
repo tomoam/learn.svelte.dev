@@ -15,15 +15,16 @@ title: The animate directive
 	import { send, receive } from './transition.js';
 
 	export let store;
-	export let filter;
+	export let done;
 </script>
 ```
 
-次に、それを `<label>` 要素に追加します。 
+次に、それを `<li>` 要素に追加します:
 
 ```svelte
 /// file: TodoList.svelte
-<label
+<li
+	class:done
 	in:receive={{ key: todo.id }}
 	out:send={{ key: todo.id }}
 	+++animate:flip+++
@@ -34,7 +35,8 @@ title: The animate directive
 
 ```svelte
 /// file: TodoList.svelte
-<label
+<li
+	class:done
 	in:receive={{ key: todo.id }}
 	out:send={{ key: todo.id }}
 	animate:flip+++={{ duration: 200 }}+++

@@ -2,24 +2,19 @@
 title: <svelte:element>
 ---
 
-どの種類の DOM 要素をレンダリングするのか事前にわからない場合があります。この場合は `<svelte:element>` が便利です。`if` ブロックを何個も並べる代わりに…
+(前回の演習と)同様、どのような DOM 要素をレンダリングするのかいつも事前にわかるとはかぎりません。ここで便利なのが `<svelte:element>` です。[前回の演習](svelte-component)と同じように、長い`if` ブロックの列を1つの動的なコンポーネントで置き換えることができます:
 
 ```svelte
 /// file: App.svelte
-{#if selected === 'h1'}
-	<h1>I'm a h1 tag</h1>
-{:else if selected === 'h3'}
-	<h3>I'm a h3 tag</h3>
-{:else if selected === 'p'}
-	<p>I'm a p tag</p>
-{/if}
+<select bind:value={selected}>
+	{#each options as option}
+		<option value={option}>{option}</option>
+	{/each}
+</select>
+
++++<svelte:element this={selected}>
+	I'm a <code>&lt;{selected}&gt;</code> element
+</svelte:element>+++
 ```
 
-…動的なコンポーネントを1つ置きます:
-
-```svelte
-/// file: App.svelte
-<svelte:element this={selected}>I'm a {selected} tag</svelte:element>
-```
-
-`this` の値は任意の文字列、または falsy な値です。falsy である場合、要素がレンダリングされません。
+`this` の値は任意の文字列、または falsy な値です。falsy である場合、要素はレンダリングされません。

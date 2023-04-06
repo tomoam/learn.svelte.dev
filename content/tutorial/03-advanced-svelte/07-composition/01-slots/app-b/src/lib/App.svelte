@@ -1,8 +1,19 @@
 <script>
-	import Box from './Box.svelte';
+	import Card from './Card.svelte';
 </script>
 
-<Box>
-	<h2>Hello!</h2>
-	<p>This is a box. It can contain anything.</p>
-</Box>
+<main>
+	<Card>
+		<span>Patrick BATEMAN</span>
+		<span>Vice President</span>
+	</Card>
+</main>
+
+<style>
+	main {
+		display: grid;
+		place-items: center;
+		height: 100%;
+		background: url(./wood.svg);
+	}
+</style>

@@ -18,5 +18,7 @@ title: The transition directive
 
 ```svelte
 /// file: App.svelte
-<p +++transition:fade+++>Fades in and out</p>
+<p +++transition:fade+++>
+	Fades in and out
+</p>
 ```

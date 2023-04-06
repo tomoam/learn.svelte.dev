@@ -52,24 +52,38 @@ export const actions = {
 	}}+++
 >
 	<label>
-		+++{creating? 'saving...' : 'add a todo:'}+++
+		add a todo:
 		<input
 			+++disabled={creating}+++
 			name="description"
 			value={form?.description ?? ''}
+			autocomplete="off"
 			required
 		/>
 	</label>
 </form>
 ```
 
-削除の場合、サーバーがなにか検証するのを待つ必要はありません — すぐに UI を更新することができます。
+データを保存している間は、メッセージを表示することができます:
+
+```svelte
+/// file: App.svelte
+<ul class="todos">
+	<!-- ... -->
+</ul>
+
++++{#if creating}
+	<span class="saving">saving...</span>
+{/if}+++
+```
+
+削除の場合、サーバーがなにか検証するのを待つ必要はありません — すぐに UI を更新することができます:
 
 ```svelte
 /// file: src/routes/+page.svelte
-<ul>
+<ul class="todos">
 	{#each +++data.todos.filter((todo) => !deleting.includes(todo.id))+++ as todo (todo.id)}
-		<li class="todo" in:fly={{ y: 20 }} out:slide>
+		<li in:fly={{ y: 20 }} out:slide>
 			<form
 				method="POST"
 				action="?/delete"

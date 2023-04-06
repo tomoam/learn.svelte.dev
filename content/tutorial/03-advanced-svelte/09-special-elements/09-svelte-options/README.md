@@ -8,11 +8,11 @@ title: <svelte:options>
 
 これを最適化するには、`<Todo>` コンポーネントに *immutable* データを期待するように指示します。これは、`todo` プロパティを *変更* しないことを約束していることを意味します。
 
-これを `Todo.svelte` ファイルの先頭に追加します。
+これを `Todo.svelte` の先頭に追加します。
 
 ```svelte
 /// file: Todo.svelte
-<svelte:options immutable={true}/>
+<svelte:options immutable={true} />
 ```
 
 > お好みであれば、これを `<svelte:options immutable/>` と短くしても構いません。

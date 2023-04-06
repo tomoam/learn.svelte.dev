@@ -4,21 +4,18 @@ title: If blocks
 
 HTML には条件式やループのような *ロジック* を表現する方法がありません。Svelteにはあります。
 
-条件付きでマークアップをレンダリングするために、私たちはそれを `if` ブロックで囲みます。
+条件付きでマークアップをレンダリングする場合は、そのマークアップを `if` ブロックで囲みます。`count` が 10 より大きいときに表示されるテキストを追加してみましょう:
 
 ```svelte
 /// file: App.svelte
-+++{#if user.loggedIn}+++
-	<button on:click={toggle}>
-		Log out
-	</button>
-+++{/if}+++
+<button on:click={increment}>
+	Clicked {count}
+	{count === 1 ? 'time' : 'times'}
+</button>
 
-+++{#if !user.loggedIn}+++
-	<button on:click={toggle}>
-		Log in
-	</button>
-+++{/if}+++
++++{#if count > 10}
+	<p>{count} is greater than 10</p>
+{/if}+++
 ```
 
 試してみてください。コンポーネントを更新し、ボタンをクリックしてみてください。

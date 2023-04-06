@@ -33,19 +33,11 @@ function fade(node, { delay = 0, duration = 400 }) {
 
 ```css
 /// no-file
-0% {
-	opacity: 0;
-}
-10% {
-	opacity: 0.1;
-}
-20% {
-	opacity: 0.2;
-}
+0% { opacity: 0 }
+10% { opacity: 0.1 }
+20% { opacity: 0.2 }
 /* ... */
-100% {
-	opacity: 1;
-}
+100% { opacity: 1 }
 ```
 
 しかし、もっと独創的なものを作れます。本当に余計なトランジションを作ってみましょう。
@@ -68,8 +60,8 @@ function fade(node, { delay = 0, duration = 400 }) {
 					transform: scale(${eased}) rotate(${eased * 1080}deg);
 					color: hsl(
 						${Math.trunc(t * 360)},
-						${Math.min(100, 1000 - 1000 * t)}%,
-						${Math.min(50, 500 - 500 * t)}%
+						${Math.min(100, 1000 * (1 - t))}%,
+						${Math.min(50, 500 * (1 - t))}%
 					);`
 			}+++
 		};

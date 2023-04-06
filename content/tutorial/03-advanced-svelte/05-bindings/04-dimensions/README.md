@@ -6,12 +6,12 @@ title: Dimensions
 
 ```svelte
 /// file: App.svelte
-<div bind:clientWidth={w} bind:clientHeight={h}>
+<div +++bind:clientWidth={w} bind:clientHeight={h}+++>
 	<span style="font-size: {size}px">{text}</span>
 </div>
 ```
 
-これらのバインディングは読み取り専用です。`w` と `h` の値を変更しても何の影響もありません。
+これらのバインディングは読み取り専用です。`w` と `h` の値を変更しても要素に何の影響もありません。
 
 > 要素は[この方法](http://www.backalleycoder.com/2013/03/18/cross-browser-event-based-element-resize-detection/)に似た手法を用いて測定されます。オーバーヘッドを内包しているため、要素数が巨大な場合はこの方法を使用することはおすすめしません。
 >
