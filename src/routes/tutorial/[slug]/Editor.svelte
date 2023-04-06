@@ -6,7 +6,7 @@
 	import { EditorState } from '@codemirror/state';
 	import { indentWithTab } from '@codemirror/commands';
 	import { indentUnit } from '@codemirror/language';
-	import { acceptCompletion } from '@codemirror/autocomplete';
+	import { acceptCompletion, autocompletion } from '@codemirror/autocomplete';
 	import { setDiagnostics } from '@codemirror/lint';
 	import { javascript } from '@codemirror/lang-javascript';
 	import { html } from '@codemirror/lang-html';
@@ -46,7 +46,8 @@
 				{ tag: tags.comment, color: 'var(--sk-code-comment)' },
 				{ tag: tags.string, color: 'var(--sk-code-string)' }
 			])
-		)
+		),
+		autocompletion({ closeOnBlur: false })
 	];
 
 	$: reset($files);
