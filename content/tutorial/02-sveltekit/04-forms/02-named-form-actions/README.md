@@ -30,7 +30,10 @@ export const actions = {
 <form method="POST" +++action="?/create"+++>
 	<label>
 		add a todo:
-		<input name="description" />
+		<input
+			name="description"
+			autocomplete="off"
+		/>
 	</label>
 </form>
 ```
@@ -41,14 +44,14 @@ export const actions = {
 
 ```svelte
 /// file: src/routes/+page.svelte
-<ul>
+<ul class="todos">
 	{#each data.todos as todo (todo.id)}
-		<li class="todo">
+		<li>
 +++			<form method="POST" action="?/delete">
 				<input type="hidden" name="id" value={todo.id} />
-				<button aria-label="Mark as complete">✔</button>+++
-				{todo.description}
-+++			</form>+++
+				<span>{todo.description}</span>
+				<button aria-label="Mark as complete" />
+			</form>+++
 		</li>
 	{/each}
 </ul>

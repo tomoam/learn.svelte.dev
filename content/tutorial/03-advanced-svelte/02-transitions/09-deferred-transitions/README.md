@@ -6,7 +6,7 @@ Svelte のトランジションエンジンで特に強力な特徴は、トラ�
 
 このペアのToDoリストを見てみましょう。ToDoを切り替えると反対側のリストに送られます。現実の世界ではオブジェクトはこのような振る舞いをしません。消えたり別の場所に現れたりするのではなく、一連の中間的な位置を移動します。モーションを使用することでアプリで何が起こっているのかをユーザーに理解してもらうことができます。
 
-この効果は、transition.js にあるように、`send` と `receive` というトランジションのペアを作成する`crossfade` 関数を使用することで実現できます。要素は、「send」されると、対応する「receive」される要素を探し、その要素を相手の位置に変換してフェードアウトするトランジションを生成します。要素が「receive」されると、逆のことが起こります。対応する要素がない場合は、`fallback` トランジションが使われます。
+この効果は、`transition.js` にあるように、`send` と `receive` というトランジションのペアを作成する`crossfade` 関数を使用することで実現できます。要素は、「send」されると、対応する「receive」される要素を探し、その要素を相手の位置に変換してフェードアウトするトランジションを生成します。要素が「receive」されると、逆のことが起こります。対応する要素がない場合は、`fallback` トランジションが使われます。
 
 `TodoList.svelte` を開いてください。まず、transition.js から `send` と `receive` をインポートしてください。
 
@@ -16,15 +16,16 @@ Svelte のトランジションエンジンで特に強力な特徴は、トラ�
 	+++import { send, receive } from './transition.js';+++
 
 	export let store;
-	export let filter;
+	export let done;
 </script>
 ```
 
-それから、次の `<label>` 要素にもそれらを追加し、`todo.id` プロパティを、要素にマッチするキーとして使用します。
+それから、次の `<li>` 要素にもそれらを追加し、`todo.id` プロパティを、要素にマッチするキーとして使用します。
 
 ```svelte
 /// file: TodoList.svelte
-<label
+<li
+	class:done
 	+++in:receive={{ key: todo.id }}+++
 	+++out:send={{ key: todo.id }}+++
 >

@@ -52,5 +52,5 @@ title: Progressive enhancement
 
 ```svelte
 /// file: src/routes/+page.svelte
-<li class="todo" +++in:fly={{ y: 20 }} out:slide+++>...</li>
+<li +++in:fly={{ y: 20 }} out:slide+++>...</li>
 ```

@@ -2,30 +2,57 @@
 title: onMount
 ---
 
-> この練習問題の画像は現時点では動作しません。代わりに、既存のチュートリアルをお試しください: https://svelte.jp/tutorial/onmount
+すべてのコンポーネントには、作成される時を開始とし、破棄される時を終了とする _ライフサイクル_ があります。その重要なタイミングにコードを実行できるようにする関数がいくつかあります。最も頻繁に使用するのは `onMount` で、これはコンポーネントが最初に DOM にレンダリングされた後に実行されます。
 
-すべてのコンポーネントには、作成される時を開始とし、破棄される時に終了とする *ライフサイクル* があります。その重要なタイミングにコードを実行できるようにする関数がいくつかあります。
+この演習では、`gradient.js` の `paint` 関数 を使って `<canvas>` をアニメーションさせたいと思います。まずは `svelte` から `onMount` 関数をインポートしましょう:
 
-最も頻繁に使用するのは `onMount` で、これはコンポーネントが最初に DOM にレンダリングされた後に実行されます。
+```svelte
+/// file: App.svelte
+<script>
+	+++import { onMount } from 'svelte';+++
+	import { paint } from './gradient.js';
+</script>
+```
 
-`onMount` ハンドラにネットワークからデータを読み込む処理を追加します。
+そして、コンポーネントがマウントされるときに実行する関数を追加しましょう:
 
 ```svelte
 /// file: App.svelte
 <script>
 	import { onMount } from 'svelte';
+	import { paint } from './gradient.js';
 
-	let photos = [];
++++	onMount(() => {
+		const canvas = document.querySelector('canvas');
+		const context = canvas.getContext('2d');+++
 
-	onMount(async () => {
-		const res = await fetch(`https://jsonplaceholder.typicode.com/photos?_limit=20`);
-		photos = await res.json();
-	});
++++		requestAnimationFrame(function loop(t) {
+			requestAnimationFrame(loop);
+			paint(context, t);
+		});
+	});+++
 </script>
 ```
 
-> このコンポーネントがDOMにレンダリングされた上で遅延して読み込まれるべきデータを、サーバーサイドレンダリング（SSR）中には取得せずに済むように、この`fetch`を、`<script>` の最上位ではなく、 `onMount` の中に入れることが推奨されます。なぜなら、`onDestroy`以外のライフサイクル関数がSSR中に動作することはないからです。
+> [後の演習](bind-this)で、`document.querySelector` を使わずに要素の参照を取得する方法を学びます。
 
-ライフサイクル関数は、コールバックがコンポーネントのインスタンスにバインドされるように、コンポーネントの初期化中に呼び出されなければなりません。例えば、`setTimeout` の中で呼び出されてはいけません。
+ここまでは順調です — Svelte のロゴの形で、色がゆるやかに波打つのが見えるはずです。しかし1つ問題があります — コンポーネントが破棄されたとしても、その後 loop は動き続けてしまうのです。これを修正するため、`onMount` からクリーンアップ用の関数を返す必要があります:
 
-もし `onMount` コールバックが関数を返す場合、その関数はコンポーネントが破棄されたときに呼び出されます。
+```js
+/// file: App.svelte
+onMount(() => {
+	const canvas = document.querySelector('canvas')
+	const context = canvas.getContext('2d');
+
+	+++let frame =+++ requestAnimationFrame(function loop(t) {
+		+++frame =+++ requestAnimationFrame(loop);
+		paint(context, t);
+	});
+
+	loop();
+
++++	return () => {
+		cancelAnimationFrame(frame);
+	};+++
+});
+```

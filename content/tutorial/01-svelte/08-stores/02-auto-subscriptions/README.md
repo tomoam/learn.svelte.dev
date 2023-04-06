@@ -15,7 +15,7 @@ title: Auto-subscriptions
 
 > `subscribe` メソッドを呼ぶと `unsubscribe` 関数が返ります.
 
-`unsubscribe` が宣言されましたが、さらに、例えば `onDestroy` [lifecycle hook](/tutorial/ondestroy) などで呼び出される必要があります。
+`unsubscribe` が宣言されましたが、これをさらに、例えば `onDestroy` lifecycle hook で呼び出す必要があります。
 
 ```svelte
 /// file: App.svelte

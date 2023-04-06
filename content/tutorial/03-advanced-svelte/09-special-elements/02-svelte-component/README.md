@@ -2,7 +2,9 @@
 title: <svelte:component>
 ---
 
-コンポーネントは `<svelte:component>` でカテゴリを完全に変更することができます。一連の `if` ブロックの代わりに…
+コンポーネントは `<svelte:component>` でそのタイプを完全に変更することができます。この演習では、`color` が `red` なら `RedThing.svelte` を、`green` なら `GreenThing.svelte` を、というように表示したいと思います。
+
+`if` ブロックの長い列を使ってこれを行うこともできます…
 
 ```svelte
 /// file: App.svelte
@@ -15,11 +17,17 @@ title: <svelte:component>
 {/if}
 ```
 
-…我々は単一の動的なコンポーネントを持つことができます。
+…これだと少し面倒です。代わりに、動的なコンポーネントを1つ作ることができます:
 
 ```svelte
 /// file: App.svelte
-<svelte:component this={selected.component}/>
+<select bind:value={selected}>
+	{#each options as option}
+		<option value={option}>{option.color}</option>
+	{/each}
+</select>
+
++++<svelte:component this={selected.component}/>+++
 ```
 
 `this` 値には任意のコンポーネントコンストラクタ、または falsy な値を指定できます。falsy の値を指定した場合、コンポーネントはレンダリングされません。

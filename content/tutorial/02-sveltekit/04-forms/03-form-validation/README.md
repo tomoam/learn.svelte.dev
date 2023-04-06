@@ -10,9 +10,10 @@ title: Validation
 /// file: src/routes/+page.svelte
 <form method="POST" action="?/create">
 	<label>
-		Add a todo
+		add a todo
 		<input
 			name="description"
+			autocomplete="off"
 			+++required+++
 		/>
 	</label>
@@ -31,10 +32,6 @@ export function createTodo(userid, description) {
 +++	if (description === '') {
 		throw new Error('todo must have a description');
 	}+++
-
-	if (!db.has(userid)) {
-		db.set(userid, []);
-	}
 
 	const todos = db.get(userid);
 
@@ -97,6 +94,7 @@ export const actions = {
 		<input
 			name="description"
 			+++value={form?.description ?? ''}+++
+			autocomplete="off"
 			required
 		/>
 	</label>

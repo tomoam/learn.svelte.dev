@@ -13,7 +13,10 @@ todo アプリを作ってみましょう。すでに `src/lib/server/database.j
 +++<form method="POST">
 	<label>
 		add a todo:
-		<input name="description" />
+		<input
+			name="description"
+			autocomplete="off"
+		/>
 	</label>
 </form>+++
 

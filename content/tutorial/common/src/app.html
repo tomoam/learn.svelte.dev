@@ -11,7 +11,9 @@
 			body {
 				--bg-1: hsl(0, 0%, 100%);
 				--bg-2: hsl(206, 20%, 90%);
+				--bg-3: hsl(206, 20%, 80%);
 				--fg-1: hsl(0, 0%, 13%);
+				--fg-2: hsl(0, 0%, 20%);
 				--link: hsl(208, 77%, 47%);
 				--link-hover: hsl(208, 77%, 55%);
 				--link-active: hsl(208, 77%, 40%);
@@ -182,11 +184,54 @@
 				border-radius: var(--border-radius);
 			}
 
+			ul.todos {
+				padding: 0;
+			}
+
+			ul.todos li:not(:has(> form)),
+			ul.todos li form {
+				position: relative;
+				display: flex;
+				align-items: center;
+				padding: 0.5em 0.5em 0.5em 1em;
+				margin: 0 0 0.5em 0;
+				gap: 0.5em;
+				border-radius: 5px;
+				user-select: none;
+				background: var(--bg-1);
+				filter: drop-shadow(2px 3px 6px rgba(0,0,0,0.1));
+			}
+
+			ul.todos .done {
+				filter: none;
+			}
+
+			ul.todos button {
+				border: none;
+				background-color: transparent;
+				background-repeat: no-repeat;
+				background-position: 50% 50%;
+				background-size: 1rem 1rem;
+				cursor: pointer;
+				width: 3em;
+				height: 3em;
+				margin: -0.5em -0.5em -0.5em 0;
+				aspect-ratio: 1;
+				opacity: 0.5;
+				transition: opacity 0.2s;
+			}
+
+			ul.todos button:hover {
+				opacity: 1;
+			}
+
 			@media (prefers-color-scheme: dark) {
 				body {
 					--bg-1: hsl(0, 0%, 18%);
 					--bg-2: hsl(0, 0%, 30%);
-					--fg-1: rgb(230, 230, 230);
+					--bg-3: hsl(0, 0%, 40%);
+					--fg-1: hsl(0, 0%, 90%);
+					--fg-2: hsl(0, 0%, 70%);
 					--link: hsl(206, 96%, 72%);
 					--link-hover: hsl(206, 96%, 78%);
 					--link-active: hsl(206, 96%, 64%);
