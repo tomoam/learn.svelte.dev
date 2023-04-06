@@ -2,9 +2,9 @@
 title: Named slots
 ---
 
-The previous example contained a _default slot_, which renders the direct children of a component. Sometimes you will need more control over placement. In those cases, we can use _named slots_.
+前回の例には _default slot_ があり、それはコンポーネントの直接の子をレンダリングするものでした。時々、配置場所をもっとコントロールしなければならないときがあると思います。そのような場合は、 _named slots_ を使用することができます。
 
-Inside the `<Card>` component, we've got `<span slot="telephone">` and others for `company` and `address`. Let's add the corresponding named slots in `Card.svelte`:
+`<Card>` コンポーネントの子として、すでに `<span slot="telephone">` や、その他 `company` や `address` が置いてあります。これに対応するように、named slots を `Card.svelte` に追加しましょう:
 
 ```svelte
 /// file: Card.svelte
@@ -22,7 +22,7 @@ Inside the `<Card>` component, we've got `<span slot="telephone">` and others fo
 </div>
 ```
 
-We need to add some styles to the `<small>` element so that it occupies its own line. The contents of `<Card>` inherit styles from `Card.svelte`, such as `font-family` (the lettering is something called ['Silian Rail'](https://www.youtube.com/watch?v=aZVkW9p-cCU)), but normal scoping rules apply — we need to add the styles to `App.svelte` because that's where the element is:
+`<small>` 要素にいくつかスタイルを追加して、自身の行におさまるようにします。`<Card>` のコンテンツは `Card.svelte` から `font-family` (この書体は ['Silian Rail'](https://www.youtube.com/watch?v=aZVkW9p-cCU) と呼ばれます) などのスタイルを継承しますが、通常のスコープのルールが適用されるため、この要素がある場所、つまり `App.svelte` にスタイルを追加します:
 
 ```svelte
 /// file: App.svelte
@@ -42,7 +42,7 @@ We need to add some styles to the `<small>` element so that it occupies its own 
 </style>
 ```
 
-Alternatively, we could use the `:global` modifier inside `Card.svelte` to target all `small` elements inside `.card`:
+別の方法として、`Card.svelte` の中で `:global` 修飾子を使用して `.card` の内側にあるすべての `small` 要素をターゲットにすることができます:
 
 ```svelte
 /// file: Card.svelte
