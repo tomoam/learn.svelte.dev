@@ -2,11 +2,11 @@
 title: Adding parameters
 ---
 
-Like transitions and animations, an action can take an argument, which the action function will be called with alongside the element it belongs to.
+トランジションとアニメーションと同じように、アクションは引数を取ることができます。その引数と、アクション関数自身が属する要素を以って、アクション関数は呼び出されます。
 
-In this exercise, we want to add a tooltip to the `<button>` using the [`Tippy.js`](https://atomiks.github.io/tippyjs/) library. The action is already wired up with `use:tooltip`, but if you hover over the button (or focus it with the keyboard) the tooltip contains no content.
+この演習では、[`Tippy.js`](https://atomiks.github.io/tippyjs/) ライブラリを使って `<button>` にツールチップを追加したいと思います。アクションはすでに `use:tooltip` によって紐付けられていますが、ボタンをホバーしても (キーボードでフォーカスしても) ツールチップには何も表示されません。
 
-First, the action needs to accept some options and pass them to Tippy:
+最初に、アクションでオプションを受け取り、それを Tippy に渡さなければなりません:
 
 ```js
 /// file: App.svelte
@@ -21,7 +21,7 @@ function tooltip(node, +++options+++) {
 }
 ```
 
-Then, we need to pass some options into the action:
+それから、オプションをアクションに渡します:
 
 ```svelte
 /// file: App.svelte
@@ -30,7 +30,7 @@ Then, we need to pass some options into the action:
 </button>
 ```
 
-The tooltip now works — almost. If we change the text in the `<input>`, the tooltip will not reflect the new content. We can fix that by adding an `update` method to the returned object.
+これでツールチップが動作します — ほとんどは。`<input>` のテキストを変更しても、ツールチップに新しい内容が反映されません。`update` メソッドを追加し、オブジェクトを返すことでこれを修正します。
 
 ```js
 /// file: App.svelte
