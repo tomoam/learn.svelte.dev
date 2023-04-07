@@ -20,9 +20,9 @@ Svelte は、web アプリケーションを構築するためのツールです
 
 このチュートリアルは大きく4つのパートに分かれています:
 
-- [Svelte にようこそ](/tutorial/welcome-to-svelte) (現在はこちらです)
-- [Introduction to SvelteKit](/tutorial/introducing-sveltekit)
+- [Basic Svelte](/tutorial/welcome-to-svelte) (現在はこちらです)
 - [Advanced Svelte](/tutorial/tweens)
+- [Basic SvelteKit](/tutorial/introducing-sveltekit)
 - [Advanced SvelteKit](/tutorial/optional-params)
 
 各セクションには、機能を解説するために作られた練習問題があります。後のセクションの練習問題は、それより前のセクションの練習問題で得た知識を土台として作られているので、最初から最後まで通しで学習することをおすすめします。必要に応じて、上部のメニューから移動することができます。
