@@ -22,7 +22,7 @@ title: Named slots
 </div>
 ```
 
-`<small>` 要素にいくつかスタイルを追加して、自身の行におさまるようにします。`<Card>` のコンテンツは `Card.svelte` から `font-family` (この書体は ['Silian Rail'](https://www.youtube.com/watch?v=aZVkW9p-cCU) と呼ばれます) などのスタイルを継承しますが、通常のスコープのルールが適用されるため、この要素がある場所、つまり `App.svelte` にスタイルを追加します:
+`App.svelte` の `<small>` 要素にいくつかスタイルを追加して、自身の行におさまるようにします。`<Card>` のコンテンツは `Card.svelte` から `font-family` (この書体は ['Silian Rail'](https://www.youtube.com/watch?v=aZVkW9p-cCU) と呼ばれます) などのスタイルを継承しますが、通常のスコープのルールが適用されるため、この要素がある場所、つまり `App.svelte` にスタイルを追加します:
 
 ```svelte
 /// file: App.svelte

@@ -2,61 +2,89 @@
 title: setContext and getContext
 ---
 
-> この練習問題は現時点では動作しません。代わりに、既存のチュートリアルをお試しください: https://svelte.jp/tutorial/context-api
+context API は、データや関数をプロパティとして渡したり、たくさんのイベントをディスパッチしたりすることなく、コンポーネント同士で'会話'するための仕組みを提供します。これは高度ですが、便利な機能です。この演習では、generative art のパイオニアである George Nees の [Schotter](https://collections.vam.ac.uk/item/O221321/schotter-print-nees-georg/) を、context API を使って再現してみましょう。
 
-context API は、データや関数をプロパティとして渡したり、たくさんのイベントをディスパッチしたりすることなく、コンポーネント同士で'会話'するための仕組みを提供します。これは高度ですが、便利な機能です。
+`Canvas.svelte` にはアイテムを canvas に追加する `addItem` 関数があります。これを `<Canvas>` 内のコンポーネント (例えば `<Square>`) で利用できるようにするには、`setContext` を使います:
 
-[Mapbox GL](https://docs.mapbox.com/mapbox-gl-js/overview/) のマップを使ったこのアプリの例を見てみましょう。`<MapMarker>` を使用してマーカーを表示したいのですが、ベースとなるMapboxインスタンスへの参照を各コンポーネントのプロパティとして渡したくありません。
+```svelte
+/// file: Canvas.svelte
+<script>
+	import { +++setContext+++, afterUpdate, onMount, tick } from 'svelte';
 
-context API は `setContext` と `getContext` に分かれます。もしコンポーネントが `setContext(key, context)` を呼ぶと、どの*子*コンポーネントでも `const context = getContext(key)` で context を取得することができます。
+	// ...
 
-まずは context を設定してみましょう。`Map.svelte` では、`svelte` から `setContext` をインポートし、`mapbox.js` から `key` をインポートして、`setContext` を呼び出します。
+	onMount(() => {
+		ctx = canvas.getContext('2d');
+	});
 
-```js
-/// file: Map.svelte
-import { onMount, setContext } from 'svelte';
-import { mapbox, key } from './mapbox.js';
++++	setContext('canvas', {
+		addItem
+	});+++
 
-setContext(key, {
-	getMap: () => map
-});
+	function addItem(fn) {...}
+
+	function draw() {...}
+</script>
 ```
 
-context オブジェクトはなんでも構いません。[ライフサイクル関数](/tutorial/onmount)のように、`setContext` と `getContext` はコンポーネントの初期化時に呼び出されなければいけません。それより後 (例えば `onMount` の中) で呼び出すとエラーをスローします。この例では、コンポーネントがマウントされるまで `map` は作成されないので、この context オブジェクトには `map` 自体ではなく `getMap` 関数が含まれています。
+子コンポーネントでは、この context を `getContext` で取得できます:
 
-一方、`MapMarker.svelte` では、Mapbox インスタンスへの参照を取得できるようになりました。
+```svelte
+/// file: Square.svelte
+<script>
+	+++import { getContext } from 'svelte';+++
 
-```js
-/// file: MapMarker.svelte
-import { getContext } from 'svelte';
-import { mapbox, key } from './mapbox.js';
+	export let x;
+	export let y;
+	export let size;
+	export let rotate;
 
-const { getMap } = getContext(key);
-const map = getMap();
+	+++getContext('canvas').addItem(draw);+++
+
+	function draw(ctx) {...}
+</script>
 ```
 
-これでマーカーをマップに追加することができるようになりました。
+ここまでは、そう…退屈ですよね。グリッドにランダム性を追加してみましょう:
 
-> `<MapMarker>` の、より完成度の高いバージョンでは削除やプロパティの変更も扱えますが、この場では context のデモンストレーションに留めておきます。
-
-## Context keys
-
-`mapbox.js`にはこの一行が含まれています。
-
-```js
-/// file: mapbox.js
-const key = {};
+```svelte
+/// file: App.svelte
+<div class="container">
+	<Canvas width={800} height={1200}>
+		{#each Array(12) as _, c}
+			{#each Array(22) as _, r}
+				<Square
+					x={180 + c * 40+++ + jitter(r * 2)+++}
+					y={180 + r * 40+++ + jitter(r * 2)+++}
+					size={40}
+					+++rotate={jitter(r * 0.05)}+++
+				/>
+			{/each}
+		{/each}
+	</Canvas>
+</div>
 ```
 
-どんなものでもキーとして使うことができます（例えば `setContext('mapbox', ...)` のように）。文字列を使用することの欠点は、異なるコンポーネントライブラリが誤って同じものを使ってしまう可能性があることです。オブジェクトリテラルを使用すると、どんな状況でもキーが衝突しないことが保証されます (オブジェクトは自身に対する参照の等価性しか持たないため。`{} !== {}` に対して `"x" === "x"` となる)。たとえ複数の異なる context が多くのコンポーネントレイヤーをまたいで動作している場合であっても、です。
+[ライフサイクル関数](/tutorial/onmount)と同様に、`setContext` と `getContext` はコンポーネントの初期化中に呼び出す必要があります。(context のキー (この演習の場合は `'canvas'`) には文字列以外も含め、好きなものを指定でき、context にアクセスする人をコントロールするのに有用です。)
 
-## Contexts vs. stores
-
-context とストアは似ているように見えます。ストアはアプリの*どの*部分でも使用できるのに対し、context は*コンポーネントとその子孫*のみが利用できるという点で異なります。これは、ある状態が他の状態に干渉することなく、コンポーネントの複数のインスタンスを使用したい場合に便利です。
-
-実際には、この2つを一緒に使うこともあるかもしれません。context はリアクティブではないので、時間の経過とともに変化する値はストアとして表現する必要があります。
+context オブジェクトには、ストアを含めあらゆるものを含めることができます。これにより、時間の経過とともに変化する値を子コンポーネントに渡すことができます:
 
 ```js
 /// no-file
-const { these, are, stores } = getContext(...);
+// in a parent component
+import { setContext } from 'svelte';
+import { writable } from 'svelte/store';
+
+setContext('my-context', {
+	count: writable(0)
+});
+```
+```js
+/// no-file
+// in a child component
+import { getContext } from 'svelte';
+
+const { count } = getContext('my-context');
+
+$: console.log({ count });
 ```

@@ -9,7 +9,7 @@ title: Fallback errors
 ```js
 /// file: src/routes/+layout.server.js
 export function load() {
-	throw new Error('😬');
+	throw new Error('yikes');
 }
 ```
 
@@ -17,22 +17,9 @@ export function load() {
 
 ```html
 /// file: src/error.html
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<title>%sveltekit.error.message%</title>
-		<style>
-			body {
-				color: #ff531a;
-			}
-		</style>
-	</head>
-	<body>
-		<h1>Game over</h1>
-		<p>Error code %sveltekit.status%</p>
-	</body>
-</html>
+<h1>Game over</h1>
+<p>Code %sveltekit.status%</p>
+<p>%sveltekit.error.message%</p>
 ```
 
 このファイルは以下の項目を含めることができます。

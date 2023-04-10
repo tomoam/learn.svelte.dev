@@ -4,7 +4,7 @@
 	import Folder from './Folder.svelte';
 	import * as context from './context.js';
 	import Modal from '$lib/components/Modal.svelte';
-	import { files, solution, reset_files, create_directories } from '../state.js';
+	import { files, solution, reset_files, create_directories, selected_name } from '../state.js';
 	import { afterNavigate } from '$app/navigation';
 
 	/** @type {import('$lib/types').Exercise} */
@@ -14,7 +14,7 @@
 
 	const dispatch = createEventDispatcher();
 
-	const hidden = new Set(['__client.js', 'node_modules']);
+	const hidden = new Set(['__client.js', 'node_modules', '__delete']);
 
 	let modal_text = '';
 
@@ -31,7 +31,7 @@
 		add: async (name, type) => {
 			const expected = $solution[name];
 
-			if (type !== expected.type) {
+			if (expected && type !== expected.type) {
 				modal_text = `${name.slice(exercise.scope.prefix.length)} should be a ${expected.type}, not a ${type}!`;
 				return;
 			}
@@ -93,10 +93,16 @@
 				}
 			}
 
+			const was_selected = $selected_name === to_rename.name;
+
 			to_rename.basename = /** @type {string} */ (new_full_name.split('/').pop());
 			to_rename.name = new_full_name;
 
 			reset_files([...$files, ...create_directories(new_full_name, $files)]);
+
+			if (was_selected) {
+				dispatch('select', { name: new_full_name });
+			}
 		},
 
 		remove: async (file) => {
@@ -122,6 +128,14 @@
 			dispatch('select', { name });
 		}
 	});
+
+	/** @param {import('$lib/types').Stub} file */
+	function is_deleted(file) {
+		if (file.type === 'directory') return `${file.name}/__delete` in exercise.a;
+		if (file.text) return file.contents.startsWith('__delete');
+
+		return false;
+	}
 </script>
 
 <ul
@@ -147,7 +161,7 @@
 			name: '',
 			basename: exercise.scope.name
 		}}
-		contents={$files.filter((file) => !hidden.has(file.basename))}
+		contents={$files.filter((file) => !hidden.has(file.basename) && !is_deleted(file))}
 	/>
 </ul>
 
