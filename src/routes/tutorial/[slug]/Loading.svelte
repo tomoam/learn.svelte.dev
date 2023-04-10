@@ -32,7 +32,7 @@
 				</p>
 				<p>
 					If you have 'Delete cookies and site data when Firefox is closed' enabled in
-					<code>about:preferences#privacy</code>, make sure <code>learn.svelte.dev</code> is included
+					<code>about:preferences#privacy</code>, make sure <code>learn.svelte.jp</code> is included
 					as an exception.
 				</p>
 			{:else if /chrome/i.test(navigator.userAgent) && !/edg/i.test(navigator.userAgent)}
@@ -51,7 +51,7 @@
 						/>
 					</svg>
 					icon in the URL bar or go to
-					<code>chrome://settings/cookies</code> and add <code>learn.svelte.dev</code> to 'Sites that
+					<code>chrome://settings/cookies</code> and add <code>learn.svelte.jp</code> to 'Sites that
 					can always use cookies'.
 				</p>
 			{:else}
