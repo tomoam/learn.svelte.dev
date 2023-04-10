@@ -5,6 +5,8 @@ title: $env/static/private
 API キーやデータベースの認証情報などの環境変数は `.env` ファイルに追加することでき、アプリケーションから使えるようになります。
 
 > また、`.env.local` ファイルや `.env.[mode]` ファイルも使えます — 詳細は [Vite のドキュメント](https://vitejs.dev/guide/env-and-mode.html#env-files) をご覧ください。機密情報を含むファイルは必ず `.gitignore` ファイルに追加してください！
+>
+> `process.env` にある環境変数も `$env/static/private` 経由で使うことができます。
 
 この練習問題では、環境変数を使って、正しいパスフレーズを知っているユーザーのみ web サイトを見ることができるようにしたいと思います。
 
@@ -48,8 +50,6 @@ export const actions = {
 ```
 
 正しいパスフレーズを知っている人が、web サイトにアクセスできるようになりました。
-
-> `process.env` にある環境変数も `$env/static/private` 経由で使うことができます。
 
 ## Keeping secrets
 

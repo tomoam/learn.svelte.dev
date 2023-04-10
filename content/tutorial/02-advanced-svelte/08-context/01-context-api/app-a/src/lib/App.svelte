@@ -1,37 +1,41 @@
 <script>
-	import Map from './Map.svelte';
-	import MapMarker from './MapMarker.svelte';
+	import Canvas from './Canvas.svelte';
+	import Square from './Square.svelte';
+
+	// we use a seeded random number generator to get consistent jitter
+	let seed = 1;
+
+	function random() {
+		seed *= 16807;
+		seed %= 2147483647;
+		return (seed - 1) / 2147483646;
+	}
+
+	function jitter(amount) {
+		return amount * (random() - 0.5);
+	}
 </script>
 
-<Map lat={35} lon={-84} zoom={3.5}>
-	<MapMarker
-		lat={37.8225}
-		lon={-122.0024}
-		label="Svelte Body Shaping"
-	/>
-	<MapMarker
-		lat={33.8981}
-		lon={-118.4169}
-		label="Svelte Barbershop & Essentials"
-	/>
-	<MapMarker
-		lat={29.723}
-		lon={-95.4189}
-		label="Svelte Waxing Studio"
-	/>
-	<MapMarker
-		lat={28.3378}
-		lon={-81.3966}
-		label="Svelte 30 Nutritional Consultants"
-	/>
-	<MapMarker
-		lat={40.6483}
-		lon={-74.0237}
-		label="Svelte Brands LLC"
-	/>
-	<MapMarker
-		lat={40.6986}
-		lon={-74.41}
-		label="Svelte Medical Systems"
-	/>
-</Map>
+<div class="container">
+	<Canvas width={800} height={1200}>
+		{#each Array(12) as _, c}
+			{#each Array(22) as _, r}
+				<Square
+					x={180 + c * 40}
+					y={180 + r * 40}
+					size={40}
+				/>
+			{/each}
+		{/each}
+	</Canvas>
+</div>
+
+<style>
+	.container {
+		height: 100%;
+		aspect-ratio: 2 / 3;
+		margin: 0 auto;
+		background: rgb(224, 219, 213);
+		filter: drop-shadow(0.5em 0.5em 1em rgba(0, 0, 0, 0.1));
+	}
+</style>

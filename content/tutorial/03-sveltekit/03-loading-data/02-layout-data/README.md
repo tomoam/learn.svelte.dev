@@ -9,7 +9,7 @@ path: /blog
 
 代わりに、`src/routes/blog/+page.server.js` を `src/routes/blog/+layout.server.js` にリネームしましょう。`/blog` ルート(route)が動作し続けていることにご注目ください — `data.summaries` がまだページで利用できているのです。
 
-では、記事ページ向けのレイアウトを作りましょう。
+では、記事ページ向けのレイアウトにサイドバーを追加しましょう:
 
 ```svelte
 /// file: src/routes/blog/[slug]/+layout.svelte
@@ -22,7 +22,7 @@ path: /blog
 		<slot />
 	</main>
 
-	<aside>
++++	<aside>
 		<h2>More posts</h2>
 		<ul>
 			{#each data.summaries as { slug, title }}
@@ -31,7 +31,7 @@ path: /blog
 				</li>
 			{/each}
 		</ul>
-	</aside>
+	</aside>+++
 </div>
 
 <style>

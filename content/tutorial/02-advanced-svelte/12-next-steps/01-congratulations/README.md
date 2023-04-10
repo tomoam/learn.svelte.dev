@@ -2,12 +2,15 @@
 title: Congratulations!
 ---
 
-これでSvelteチュートリアルは終了し、アプリの構築を始める準備が整いました。各章はいつでも参照することができます(上のタイトルをクリックするとドロップダウンが表示されます)。または [API リファレンス](https://svelte.jp/docs)、[例](https://svelte.jp/examples)、[ブログ](https://svelte.jp/blog) で学習を続けてください。あなたがTwitterユーザーであれば、[@sveltejs](https://twitter.com/sveltejs)を介して更新情報を得ることができます。
+これで Svelte のチュートリアルが完了し、開発を始める準備が整いました。
 
-ローカルの開発環境で設定するには、[クイックスタートガイド](https://svelte.jp/docs#getting-started)を確認してみてください。
+このチュートリアルの次の2つのパートでは、あらゆる形、あらゆるサイズのアプリを作るための本格的なフレームワークである SvelteKit にフォーカスをあてます。
 
-ルーティング、サーバーサイドレンダリング、その他すべてを含む、より拡張性の高いフレームワークをお探しなら、[SvelteKit](https://kit.svelte.jp)をご覧ください。
+情報が多すぎて、まだ SvelteKit チュートリアルで学ぶ気分になれない、という方、ご安心ください！ SvelteKit の全てを学ばなくても、すでに学習した Svelte の知識を活用することができます。あなたのターミナルでこちらを実行し、プロンプトに従うだけです…
 
-最重要: あなたはSvelteコミュニティのメンバーになったので、[友好的なDiscordチャットルームに参加してください](https://svelte.dev/chat)。そこにはSvelteユーザーの仲間がいて、私たちがフレームワークの将来を計画する場所でもあります。
+```bash
+/// no-file
+npm create svelte@latest
+```
 
-> 日本語翻訳版 追記：上記のDiscordはSvelte本体のもので、英語でコミュニケーションが行われています。もし日本語で質問したり交流したいのであれば、[Svelte日本のDiscord](https://discord.com/invite/YTXq3ZtBbx)にどうぞ！
+…そして `src/routes/+page.svelte` を編集してみてください。SvelteKit チュートリアルで学ぶ場合は、以下のリンクをクリックし、旅を続けてください。

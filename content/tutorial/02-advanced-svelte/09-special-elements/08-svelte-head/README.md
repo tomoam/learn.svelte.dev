@@ -2,13 +2,22 @@
 title: <svelte:head>
 ---
 
-`<svelte:head>` 要素を使うと、ドキュメントの `<head>` 内に要素を挿入することができます。
+`<svelte:head>` 要素を使うと、ドキュメントの `<head>` 内に要素を挿入することができます。これは SEO を良くするのに不可欠な `<title>` タグや `<meta>` タグなどに有用です。
+
+このチュートリアルで、その用途の使用例を示すのは難しいので、別の用途で使ってみましょう — スタイルシートを読み込みます。
 
 ```svelte
 /// file: App.svelte
-<svelte:head>
-	<link rel="stylesheet" href="tutorial/dark-theme.css">
-</svelte:head>
+<script>
+	const themes = ['margaritaville', 'retrowave', 'spaaaaace', 'halloween'];
+	let selected = themes[0];
+</script>
+
++++<svelte:head>
+	<link rel="stylesheet" href="/stylesheets/{selected}.css" />
+</svelte:head>+++
+
+<h1>Welcome to my site!</h1>
 ```
 
 > サーバサイドレンダリング (SSR) モードでは、`<svelte:head>` の内容は残りのHTMLとは別に返されます。

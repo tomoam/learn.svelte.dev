@@ -2,11 +2,11 @@
 title: <svelte:window> bindings
 ---
 
-また、`window` の特定のプロパティ、例えば `scrollY` のようなプロパティにバインドすることもできます。7行目を更新してください。
+また、`window` の特定のプロパティ、例えば `scrollY` のようなプロパティにバインドすることもできます。
 
 ```svelte
 /// file: App.svelte
-<svelte:window bind:scrollY={y}/>
+<svelte:window +++bind:scrollY={y}+++ />
 ```
 
 バインドできるプロパティの一覧は以下の通りです。

@@ -11,4 +11,4 @@ title: ssr
 export const ssr = false;
 ```
 
-> 最上位(root)の `+layout.server.js` で `ssr` を `false` に設定すると、アプリ全体を SPA に変えることができます。
+> Setting `ssr` to `false` inside your root `+layout.server.js` effectively turns your entire app into a single-page app (SPA).

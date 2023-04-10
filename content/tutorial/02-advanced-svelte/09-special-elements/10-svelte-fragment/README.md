@@ -2,35 +2,27 @@
 title: <svelte:fragment>
 ---
 
-`<svelte:fragment>` 要素は、コンテナ DOM 要素でラップすることなく、名前のついたスロットにコンテンツを配置する事ができます。これによりドキュメントのフローレイアウトが維持されます。
+`<svelte:fragment>` 要素は、コンテナ DOM 要素でラップすることなく、名前のついたスロットにコンテンツを配置する事ができます。
 
-例では box クラスに `1em` の gap を持つ flex レイアウトを適用しています。
+この演習では三目並べ(Tic-Tac-Toe)を作ります。グリッドを作るため、`App.svelte` の `<button>` 要素を `Board.svelte` の `<div class="board">` の直接の子孫にしなければなりません。
 
-```svelte
-/// file: Box.svelte
-<div class="box">
-	<slot name="header">No header was provided</slot>
-	<p>Some content between header and footer</p>
-	<slot name="footer"></slot>
-</div>
-
-<style>
-	.box {
-		display: flex;
-		flex-direction: column;
-		gap: 1em;
-	}
-</style>
-```
-
-しかしながら、footer のコンテンツは新たなフローレイアウトを生成した div 要素でラップされているため、このリズムに沿った配置がされていません。
-
-これは `App` コンポーネントの `<div slot="footer">` を書き換えることで解決できます。この `<div>` を `<svelte:fragment>` に書き換えます。
+今壊れているのは、`<div slot="game">` の子になってしまっているからです。修正してみましょう:
 
 ```svelte
 /// file: App.svelte
-<svelte:fragment slot="footer">
-	<p>All rights reserved.</p>
-	<p>Copyright (c) 2019 Svelte Industries</p>
-</svelte:fragment>
+<+++svelte:fragment+++ slot="game">
+	{#each squares as square, i}
+		<button
+			class="square"
+			class:winning={winningLine?.includes(i)}
+			disabled={square}
+			on:click={() => {
+				squares[i] = next;
+				next = next === 'x' ? 'o' : 'x';
+			}}
+		>
+			{square}
+		</button>
+	{/each}
+</+++svelte:fragment+++>
 ```
