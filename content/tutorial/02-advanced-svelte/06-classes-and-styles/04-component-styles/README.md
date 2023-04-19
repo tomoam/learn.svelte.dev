@@ -1,0 +1,58 @@
+---
+title: Component styles
+---
+
+子コンポーネント内の style を指定したいことがよくあります。例えばこの演習では、このボックス(Box)を赤や緑、青にしたいです。
+
+方法の1つとしては、`:global` CSS 修飾子を使います。これによって他のコンポーネントの中の要素を無差別にターゲットにすることができます:
+
+```svelte
+/// file: App.svelte
+<style>
+	.boxes :global(.box:nth-child(1)) {
+		background-color: red;
+	}
+
+	.boxes :global(.box:nth-child(2)) {
+		background-color: green;
+	}
+
+	.boxes :global(.box:nth-child(3)) {
+		background-color: blue;
+	}
+</style>
+```
+
+しかし、こうすべきでない理由がたくさんあります。まず、とても冗長です。さらに、壊れやすいということです — `Box.svelte` の実装の詳細が変更されると、このセレクタが壊れるかもしれません。
+
+なにより、失礼です。コンポーネントは、どの変数をプロパティ(props)として公開するか決めるのと同じように、どの style を '外' から指定できるようにするか自身で決めることができるはずです。`:global` は最後の手段のエスケープハッチとして使用したほうがよいでしょうl．
+
+`Box.svelte` の中で、`background-color` を変更し、[CSS カスタムプロパティ](https://developer.mozilla.org/ja/docs/Web/CSS/--*)で定義されるようにします:
+
+```svelte
+/// file: Box.svelte
+<style>
+	.box {
+		width: 5em;
+		height: 5em;
+		border-radius: 0.5em;
+		margin: 0 0 1em 0;
+		background: +++var(--color, #ddd)+++;
+	}
+</style>
+```
+
+親要素 (例えば `<div class="boxes">`) であれば `--color` の値をセットできますが、コンポーネントごとにセットすることもできます:
+
+```svelte
+/// file: App.svelte
+<div class="boxes">
+	<Box +++--color="red"+++ />
+	<Box +++--color="green"+++ />
+	<Box +++--color="blue"+++ />
+</div>
+```
+
+他の属性と同じようにこの値を動的にすることができます。
+
+この機能は、必要に応じて各コンポーネントを `<div style="display: contents">` でラップしてカスタムプロパティを適用する、という仕組みになっています。

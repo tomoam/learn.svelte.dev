@@ -2,7 +2,7 @@
 title: Checking for slot content
 ---
 
-In some cases, you may want to control parts of your component based on whether slotted content was passed in. For example, if we remove the `<header>` from `App.svelte`...
+slot されるコンテンツが渡されたかどうかに基づいて、コンポーネントの一部をコントロールしたいことがあります。例えば、`App.svelte` から  `<header>` を削除すると…
 
 ```svelte
 /// file: App.svelte
@@ -23,9 +23,9 @@ In some cases, you may want to control parts of your component based on whether 
 </div>
 ```
 
-...we're left with an ugly double border because `FilterableList.svelte` is still rendering the `<div class="header">`.
+…見苦しい二重線のボーダーが残ってしまいます。なぜなら `FilterableList.svelte` ではまだ `<div class="header">` をレンダリングしているからです。
 
-We can fix that by using the special `$$slots` variable in `FilterableList.svelte`:
+`FilterableList.svelte` で特別な `$$slots` 変数を使用して修正します:
 
 ```svelte
 /// file: FilterableList.svelte
