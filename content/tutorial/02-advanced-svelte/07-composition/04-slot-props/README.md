@@ -2,11 +2,11 @@
 title: Slot props
 ---
 
-Components can pass data _back_ to their slotted content via _slot props_. In this app, we have a list of named CSS colours. Typing into the `<input>` will filter the list.
+コンポーネントは、 _slot props_ を使って slot されるコンテンツにデータを渡すことができます。このアプリには、名前付きの CSS カラーのリストがあり、`<input>` になにかを入力するとそのリストがフィルタリングされます。
 
-Right now every row is showing `AliceBlue`, and as lovely a colour as it is, that's not what we want.
+現在はすべての行が `AliceBlue` と表示されており、とても素敵な色ですが、この状態は望ましくありません。
 
-Open `FilterableList.svelte`. The `<slot>` is being rendered for each filtered item in the list. Pass the data into the slot:
+`FilterableList.svelte` を開きましょう。`<slot>` はリストからフィルタリングされたアイテムごとにレンダリングされています。slot にデータを渡しましょう:
 
 ```svelte
 /// file: FilterableList.svelte
@@ -17,9 +17,9 @@ Open `FilterableList.svelte`. The `<slot>` is being rendered for each filtered i
 </div>
 ```
 
-(As in other contexts, `{item}` is shorthand for `item={item}`.)
+(他と同様、`{item}` は `item={item}` の短縮形です。)
 
-Then, on the other side, expose the data to the slotted content with the `let:` directive:
+そしてもう一方では、`let:` ディレクティブで slot されるコンテンツにデータを公開します:
 
 ```svelte
 /// file: App.svelte
@@ -38,7 +38,7 @@ Then, on the other side, expose the data to the slotted content with the `let:` 
 </FilterableList>
 ```
 
-Finally, get rid of the placeholder variable, which we no longer need:
+最後に、もう必要ないプレースホルダーの変数を削除しましょう:
 
 ```svelte
 /// file: App.svelte
@@ -50,4 +50,4 @@ Finally, get rid of the placeholder variable, which we no longer need:
 </script>
 ```
 
-> Named slots can also have props; use the `let` directive on an element with a `slot="..."` attribute, instead of on the component itself.
+> Named slot もプロパティを持つことができます; コンポーネント自体にではなく、`slot="..."` 属性を持つ要素に `let` ディレクティブを使用します。

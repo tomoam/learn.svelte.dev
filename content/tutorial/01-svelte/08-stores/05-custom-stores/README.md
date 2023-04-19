@@ -2,9 +2,9 @@
 title: Custom stores
 ---
 
-オブジェクトが `subscribe` メソッドを正しく実装していれば、それはストアです。それ以外は何でもありです。したがって、ドメイン固有のロジックを使ってカスタムストアを作成するのはとても簡単です。
+オブジェクトが `subscribe` メソッドを正しく実装していれば、それは store です。それ以外は何でもありです。したがって、ドメイン固有のロジックを使ってカスタムの store を作成するのはとても簡単です。
 
-たとえば、先ほどの例の `count` ストアに `increment`, `decrement`, `reset` メソッドを含めて、`set` と `update` は公開しないようにできます:
+たとえば、先ほどの例の `count` store に `increment`, `decrement`, `reset` メソッドを含めて、`set` と `update` は公開しないようにできます:
 
 ```js
 /// file: stores.js

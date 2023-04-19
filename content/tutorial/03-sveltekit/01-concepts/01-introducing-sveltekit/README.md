@@ -30,6 +30,8 @@ Node.js を使用したことがあるなら、`package.json` はおなじみで
 
 `svelte.config.js` にはプロジェクトの設定が記述されています。今はこのファイルについて気にする必要はありませんが、もし興味があれば、[ドキュメントを参照してください](https://kit.svelte.jp/docs/configuration)。
 
+`vite.config.js` には [Vite](https://vitejs.dev/) の設定が含まれています。SvelteKit は Vite を使用しているので、hot module replacement (HMR) や、TypeScript サポート、静的アセットハンドリングなどの [Vite の機能](https://vitejs.dev/guide/features.html) を使うことができます。
+
 `src` はアプリのソースコードを置く場所です。`src/app.html` はページのテンプレート (SvelteKit が `%sveltekit.head%` と `%sveltekit.body%` を適切に置き換えます) で、`src/routes` はアプリの [ルート(routes)](/tutorial/pages) を定義します。
 
 最後に、`static` にはアプリをデプロイするときに含めるべきアセット (`favicon.png` や `robots.txt` など) を置きます。
