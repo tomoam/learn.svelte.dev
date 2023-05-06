@@ -19,8 +19,6 @@ title: Error pages
 </span>
 ```
 
-> `page` store を使用していますが、これは後の章で詳細に学習します。
-
 `+error.svelte` コンポーネントは最上位(root)の `+layout.svelte` の内側でレンダリングされます。よりきめ細やかな `+error.svelte` 境界を作ることもできます。
 
 ```svelte
