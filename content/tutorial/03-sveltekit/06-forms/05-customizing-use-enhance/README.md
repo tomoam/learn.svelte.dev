@@ -67,7 +67,7 @@ export const actions = {
 データを保存している間は、メッセージを表示することができます:
 
 ```svelte
-/// file: App.svelte
+/// file: src/routes/+page.svelte
 <ul class="todos">
 	<!-- ... -->
 </ul>
