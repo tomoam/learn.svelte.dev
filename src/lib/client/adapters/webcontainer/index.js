@@ -4,6 +4,7 @@ import AnsiToHtml from 'ansi-to-html';
 import * as yootils from 'yootils';
 import { escape_html, get_depth } from '../../../utils.js';
 import { ready } from '../common/index.js';
+import { isWebContainerSupported } from './utils.js';
 
 /**
  * @typedef {import("../../../../routes/tutorial/[slug]/state.js").CompilerWarning} CompilerWarning
@@ -25,13 +26,15 @@ let vm;
  * @returns {Promise<import('$lib/types').Adapter>}
  */
 export async function create(base, error, progress, logs, warnings) {
-	if (/safari/i.test(navigator.userAgent) && !/chrome/i.test(navigator.userAgent)) {
-		throw new Error('WebContainers are not supported by Safari');
+	if (!isWebContainerSupported()) {
+		throw new Error('WebContainers are not supported by Safari 16.3 or earlier');
 	}
 
 	progress.set({ value: 0, text: 'loading files' });
 
 	const q = yootils.queue(1);
+	/** @type {Map<string, Array<import('$lib/types').FileStub>>} */
+	const q_per_file = new Map();
 
 	/** Paths and contents of the currently loaded file stubs */
 	let current_stubs = stubs_to_map([]);
@@ -203,25 +206,9 @@ export async function create(base, error, progress, logs, warnings) {
 				// For some reason, server-ready is fired again when the vite dev server is restarted.
 				// We need to wait for it to finish before we can continue, else we might
 				// request files from Vite before it's ready, leading to a timeout.
-				const will_restart = launched && to_write.some(will_restart_vite_dev_server);
-				const promise = will_restart
-					? new Promise((fulfil, reject) => {
-							const error_unsub = vm.on('error', (error) => {
-								error_unsub();
-								reject(new Error(error.message));
-							});
-
-							const ready_unsub = vm.on('server-ready', (port, base) => {
-								ready_unsub();
-								console.log(`server ready on port ${port} at ${performance.now()}: ${base}`);
-								fulfil(undefined);
-							});
-
-							setTimeout(() => {
-								reject(new Error('Timed out resetting WebContainer'));
-							}, 10000);
-					  })
-					: Promise.resolve();
+				const will_restart = launched &&
+					(to_write.some(is_config) || to_delete.some(is_config_path));
+				const promise = will_restart ? wait_for_restart_vite() : Promise.resolve();
 
 				for (const file of to_delete) {
 					await vm.fs.rm(file, { force: true, recursive: true });
@@ -241,6 +228,15 @@ export async function create(base, error, progress, logs, warnings) {
 			});
 		},
 		update: (file) => {
+
+			let queue = q_per_file.get(file.name);
+			if (queue) {
+				queue.push(file);
+				return Promise.resolve(false);
+			}
+
+			q_per_file.set(file.name, queue = [file]);
+
 			return q.add(async () => {
 				/** @type {import('@webcontainer/api').FileSystemTree} */
 				const root = {};
@@ -263,22 +259,35 @@ export async function create(base, error, progress, logs, warnings) {
 					tree = /** @type {import('@webcontainer/api').DirectoryNode} */ (tree[part]).directory;
 				}
 
-				tree[basename] = to_file(file);
+				const will_restart = is_config(file);
 
-				// initialize warnings of this file
-				$warnings[file.name] = [];
-				schedule_to_update_warning(100);
+				while (queue && queue.length > 0) {
 
-				await vm.mount(root);
+					// if the file is updated many times rapidly, get the most recently updated one
+					const file = /** @type {import('$lib/types').FileStub} */ (queue.pop());
+					queue.length = 0
 
-				current_stubs.set(file.name, file);
+					tree[basename] = to_file(file);
 
-				// we need to stagger sequential updates, just enough that the HMR
-				// wires don't get crossed. 50ms seems to be enough of a delay
-				// to avoid glitches without noticeably affecting update speed
-				await new Promise((f) => setTimeout(f, 50));
+					// initialize warnings of this file
+					$warnings[file.name] = [];
+					schedule_to_update_warning(100);
 
-				return will_restart_vite_dev_server(file);
+					await vm.mount(root);
+
+					if (will_restart) await wait_for_restart_vite();
+
+					current_stubs.set(file.name, file);
+
+					// we need to stagger sequential updates, just enough that the HMR
+					// wires don't get crossed. 50ms seems to be enough of a delay
+					// to avoid glitches without noticeably affecting update speed
+					await new Promise((f) => setTimeout(f, 50));
+				}
+
+				q_per_file.delete(file.name)
+
+				return will_restart;
 			});
 		}
 	};
@@ -287,11 +296,34 @@ export async function create(base, error, progress, logs, warnings) {
 /**
  * @param {import('$lib/types').Stub} file
  */
-function will_restart_vite_dev_server(file) {
-	return (
-		file.type === 'file' &&
-		(file.name === '/vite.config.js' || file.name === '/svelte.config.js' || file.name === '/.env')
-	);
+function is_config(file) {
+	return file.type === 'file' && is_config_path(file.name);
+}
+
+/**
+ * @param {string} path
+ */
+function is_config_path(path) {
+	return ['/vite.config.js', '/svelte.config.js', '/.env'].includes(path);
+}
+
+function wait_for_restart_vite() {
+	return new Promise((fulfil, reject) => {
+		const error_unsub = vm.on('error', (error) => {
+			error_unsub();
+			reject(new Error(error.message));
+		});
+
+		const ready_unsub = vm.on('server-ready', (port, base) => {
+			ready_unsub();
+			console.log(`server ready on port ${port} at ${performance.now()}: ${base}`);
+			fulfil(undefined);
+		});
+
+		setTimeout(() => {
+			reject(new Error('Timed out resetting WebContainer'));
+		}, 10000);
+	});
 }
 
 /**
