@@ -4,13 +4,13 @@ title: Media elements
 
 `<audio>` 要素と `<video>` 要素のプロパティをバインドすることができるので、(例えば) `AudioPlayer.svelte` のようなカスタムのプレーヤー UI をとても簡単に作ることができます。
 
-最初に、`<audio>` 要素とそのバインディングを追加します (`duration` と `paused` は短縮形を使います):
+最初に、`<audio>` 要素とそのバインディングを追加します (`src` と `duration` と `paused` は短縮形を使います):
 
 ```svelte
 /// file: AudioPlayer.svelte
 <div class="player" class:paused>
 +++	<audio
-		src={src}
+		{src}
 		bind:currentTime={time}
 		bind:duration
 		bind:paused
@@ -53,7 +53,7 @@ function seek(e) {
 ```svelte
 /// file: AudioPlayer.svelte
 <audio
-	src={src}
+	{src}
 	bind:currentTime={time}
 	bind:duration
 	bind:paused

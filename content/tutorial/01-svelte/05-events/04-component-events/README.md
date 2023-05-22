@@ -28,4 +28,4 @@ title: Component events
 <Inner +++on:message={handleMessage}+++ />
 ```
 
-> イベント名を他のものに変更してみることもできます。例えば、`Inner.svelte` の `dispatch('message')` を `dispatch('greet')` に変更し、`App.svelte` の属性名を `on:message` から `on:greet` に変更します。
+> イベント名を別の名前に変更してみることもできます。例えば、`Inner.svelte` の `dispatch('message', {...})` を `dispatch('greet', {...})` に変更し、`App.svelte` の属性名を `on:message` から `on:greet` に変更します。
