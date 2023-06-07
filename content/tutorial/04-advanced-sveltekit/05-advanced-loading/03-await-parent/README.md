@@ -30,7 +30,7 @@ export async function load(+++{ parent }+++) {
 最後に、`src/routes/sum/+page.js` で、両方の `load` 関数から返される親のデータを取得しましょう。
 
 ```js
-/// file: src/sum/+page.js
+/// file: src/routes/sum/+page.js
 export async function load(+++{ parent }+++) {
 	+++const { a, b } = await parent();+++
 	return { +++c: a + b+++ };

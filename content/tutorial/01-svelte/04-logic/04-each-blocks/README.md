@@ -11,7 +11,7 @@ title: Each blocks
 <div>
 	+++{#each colors as color}+++
 		<button
-			aria-current="{selected === 'red' ? 'true' : undefined}"
+			aria-current={selected === 'red'}
 			aria-label="red"
 			style="background: red"
 			on:click={() => selected = 'red'}
@@ -29,7 +29,7 @@ title: Each blocks
 <div>
 	{#each colors as color}
 		<button
-			aria-current="{selected === +++color+++ ? 'true' : undefined}"
+			aria-current={selected === +++color+++}
 			aria-label=+++{color}+++
 			style="background: +++{color}+++"
 			on:click={() => selected = +++color+++}
@@ -45,7 +45,7 @@ title: Each blocks
 <div>
 	{#each colors as color, +++i}+++
 		<button
-			aria-current="{selected === color ? 'true' : undefined}"
+			aria-current={selected === color}
 			aria-label={color}
 			style="background: {color}"
 			on:click={() => selected = color}
