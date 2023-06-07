@@ -12,6 +12,8 @@ let count = 0;
 +++$: doubled = count * 2;+++
 ```
 
+リアクティブステートメント(reactive statement)が未宣言の変数への代入だけで構成されている場合、Svelte はあなたのかわりに `let` 宣言を注入します。
+
 > これが少し異質に見えても心配しないでください。これは（見慣れないかもしれませんが） [正しい](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/label) JavaScript で、Svelte は「参照される値が変わるたびにこのコードを再実行する」という意味だと解釈します。一度慣れてしまえば、もう戻れません。
 
 マークアップで `doubled` を使ってみましょう。
