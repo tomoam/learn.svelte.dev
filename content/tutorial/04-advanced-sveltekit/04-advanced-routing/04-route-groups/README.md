@@ -27,9 +27,9 @@ export function load({ cookies, url }) {
 
 ```svelte
 /// file: src/routes/(authed)/+layout.svelte
-<form method="POST" action="/logout">
-	<button>Log out</button>
-</form>
-
 <slot />
+
+<form method="POST" action="/logout">
+	<button>log out</button>
+</form>
 ```

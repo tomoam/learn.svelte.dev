@@ -63,7 +63,7 @@ function seek(e) {
 />
 ```
 
-`<audio>` と `<video>` のバインディングの完全なセットは以下の通りです — 6つの _読み取り専用(readonly)_ のバインディング…
+`<audio>` と `<video>` のバインディングの完全なセットは以下の通りです — 7つの _読み取り専用(readonly)_ のバインディング…
 
 - `duration` (readonly) — ビデオの総再生時間 (秒単位)
 - `buffered` (readonly) — `{start, end}` オブジェクトの配列
@@ -71,6 +71,7 @@ function seek(e) {
 - `played` (readonly) — 同上
 - `seeking` (readonly) — boolean
 - `ended` (readonly) — boolean
+- `readyState` (readonly) — 0 から 4 までの数値 (0 と 4 も含む)
 
 …と5つの _双方向_ バインディングです:
 
