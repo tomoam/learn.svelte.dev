@@ -4,7 +4,7 @@ title: Named slots
 
 前回の例には _default slot_ があり、それはコンポーネントの直接の子をレンダリングするものでした。時々、配置場所をもっとコントロールしなければならないときがあると思います。そのような場合は、 _named slots_ を使用することができます。
 
-`<Card>` コンポーネントの子として、すでに `<span slot="telephone">` や、その他 `company` や `address` が置いてあります。これに対応するように、named slots を `Card.svelte` に追加しましょう:
+`App.svelte` の中で、`<span slot="telephone">` や `company`、`address` を子として持つ `<Card>` コンポーネントをレンダリングしようとしています。これに対応するように、named slots を `Card.svelte` に追加しましょう:
 
 ```svelte
 /// file: Card.svelte

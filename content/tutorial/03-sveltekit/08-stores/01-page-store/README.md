@@ -4,7 +4,7 @@ title: page
 
 [以前](writable-stores)学んだように、Svelte の store は個々のコンポーネントに属さないデータを置くことができます。
 
-SvelteKit では、3つの読み取り専用 store を `$app/stores` から使用できます — `page`、`navigating`、`updating` です。もっとも多く使用することになるのは [`page`](https://kit.svelte.jp/docs/types#public-types-page) で、これは現在のページに関する情報を取得することができます:
+SvelteKit では、3つの読み取り専用 store を `$app/stores` から使用できます — `page`、`navigating`、`updated` です。もっとも多く使用することになるのは [`page`](https://kit.svelte.jp/docs/types#public-types-page) で、これは現在のページに関する情報を取得することができます:
 
 * `url` — 現在のページの [URL](https://developer.mozilla.org/ja/docs/Web/API/URL)
 * `params` — 現在のページの[パラメータ](params)

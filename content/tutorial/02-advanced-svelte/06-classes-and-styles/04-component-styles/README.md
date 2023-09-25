@@ -37,7 +37,7 @@ title: Component styles
 		height: 5em;
 		border-radius: 0.5em;
 		margin: 0 0 1em 0;
-		background: +++var(--color, #ddd)+++;
+		background-color: +++var(--color, #ddd)+++;
 	}
 </style>
 ```
