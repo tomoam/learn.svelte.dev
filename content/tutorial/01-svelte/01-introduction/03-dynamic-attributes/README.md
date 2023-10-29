@@ -32,5 +32,5 @@ Webアプリケーションは、例えば視覚や動作に障害のある方�
 
 ```svelte
 /// file: App.svelte
-<img +++{src}+++ alt="A man dances." />
+<img +++{src}+++ alt="{name} dances." />
 ```
