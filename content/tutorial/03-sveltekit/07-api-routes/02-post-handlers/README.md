@@ -12,20 +12,20 @@ title: POST handlers
 	type="text"
 	autocomplete="off"
 	on:keydown={async (e) => {
-		if (e.key === 'Enter') {
-			const input = e.currentTarget;
-			const description = input.value;
+		if (e.key !== 'Enter') return;
 
-+++			const response = await fetch('/todo', {
-				method: 'POST',
-				body: JSON.stringify({ description }),
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});+++
+		const input = e.currentTarget;
+		const description = input.value;
 
-			input.value = '';
-		}
++++		const response = await fetch('/todo', {
+			method: 'POST',
+			body: JSON.stringify({ description }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});+++
+
+		input.value = '';
 	}}
 />
 ```
@@ -51,7 +51,7 @@ export async function POST({ request, cookies }) {
 
 `load` 関数や form actions と同様、`request` は標準の [Request](https://developer.mozilla.org/ja/docs/Web/API/Request) オブジェクトです; `await request.json()` はイベントハンドラから POST されたデータを返します。
 
-データベースに新たに生成された todo の `id` をレスポンスとして [201 Created](https://httpstatusdogs.com/201-created) ステータスで返しています。イベントハンドラに戻り、これを使用してページを更新します:
+データベースに新たに生成された todo の `id` をレスポンスとして [201 Created](https://http.dog/201) ステータスで返しています。イベントハンドラに戻り、これを使用してページを更新します:
 
 ```svelte
 /// file: src/routes/+page.svelte
@@ -59,27 +59,27 @@ export async function POST({ request, cookies }) {
 	type="text"
 	autocomplete="off"
 	on:keydown={async (e) => {
-		if (e.key === 'Enter') {
-			const input = e.currentTarget;
-			const description = input.value;
+		if (e.key !== 'Enter') return;
 
-			const response = await fetch('/todo', {
-				method: 'POST',
-				body: JSON.stringify({ description }),
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
+		const input = e.currentTarget;
+		const description = input.value;
 
-+++			const { id } = await response.json();
+		const response = await fetch('/todo', {
+			method: 'POST',
+			body: JSON.stringify({ description }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
 
-			data.todos = [...data.todos, {
-				id,
-				description
-			}];+++
++++		const { id } = await response.json();
 
-			input.value = '';
-		}
+		data.todos = [...data.todos, {
+			id,
+			description
+		}];+++
+
+		input.value = '';
 	}}
 />
 ```

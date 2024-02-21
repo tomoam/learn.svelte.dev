@@ -82,23 +82,24 @@ export const actions = {
 	+++export let form;+++
 </script>
 
-<h1>todos</h1>
-
-+++{#if form?.error}
-	<p class="error">{form.error}</p>
-{/if}+++
-
-<form method="POST" action="?/create">
-	<label>
-		add a todo:
-		<input
-			name="description"
-			+++value={form?.description ?? ''}+++
-			autocomplete="off"
-			required
-		/>
-	</label>
-</form>
+<div class="centered">
+	<h1>todos</h1>
+	
+	+++{#if form?.error}
+		<p class="error">{form.error}</p>
+	{/if}+++
+	
+	<form method="POST" action="?/create">
+		<label>
+			add a todo:
+			<input
+				name="description"
+				+++value={form?.description ?? ''}+++
+				autocomplete="off"
+				required
+			/>
+		</label>
+	</form>
 ```
 
 > `fail` でラップしなくても、action から値を返すことができます。例えば、データが保存されたときに 'success!' というメッセージを返すこともできます。それも `form` プロパティを介してアクセスすることができます。

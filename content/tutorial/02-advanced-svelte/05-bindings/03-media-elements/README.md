@@ -65,7 +65,7 @@ function seek(e) {
 
 `<audio>` と `<video>` のバインディングの完全なセットは以下の通りです — 7つの _読み取り専用(readonly)_ のバインディング…
 
-- `duration` (readonly) — ビデオの総再生時間 (秒単位)
+- `duration` (readonly) — 総再生時間 (秒単位)
 - `buffered` (readonly) — `{start, end}` オブジェクトの配列
 - `seekable` (readonly) — 同上
 - `played` (readonly) — 同上
@@ -75,8 +75,8 @@ function seek(e) {
 
 …と5つの _双方向_ バインディングです:
 
-- `currentTime` — ビデオ内の現在のポイント (秒単位)
-- `playbackRate` — ビデオの再生速度 (`1` が 'normal')
+- `currentTime` — 再生マーカー (playhead) の現在の位置 (秒単位)
+- `playbackRate` — 再生速度を上げるか遅くするか (`1` が 'normal')
 - `paused` — これは自明ですね
 - `volume` — 0 から 1 の値
 - `muted` — boolean で、true はミュートを意味します
