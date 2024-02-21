@@ -38,8 +38,9 @@ function addNumber() {
 
 ```js
 /// no-file
+const obj = { foo: { bar: 1 } };
 const foo = obj.foo;
-foo.bar = 'baz';
+foo.bar = 2;
 ```
 
 …`obj.foo.bar` に対するリアクティビティはトリガーされません。もしトリガーしたければ、`obj = obj` を続けて書く必要があります。

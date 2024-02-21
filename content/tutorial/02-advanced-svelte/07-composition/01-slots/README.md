@@ -15,7 +15,7 @@ title: Slots
 
 ```svelte
 /// file: Card.svelte
-<div class="card ">
+<div class="card">
 	+++<slot />+++
 </div>
 ```

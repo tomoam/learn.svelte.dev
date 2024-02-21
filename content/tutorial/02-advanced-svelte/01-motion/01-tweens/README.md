@@ -6,7 +6,7 @@ title: Tweens
 
 値を設定して DOM が自動的に更新されるのを見るのは最高です。もっと最高なのは？それらの値を *トゥイーン(Tween)* することです。Svelte には、変化を表すアニメーションを用いたスムーズなユーザーインターフェースを構築するためのツールがあります。
 
-まず `progress` store を `tweened` 値に変更してみましょう。
+まず `progress` store を `tweened` store に変更してみましょう。
 
 ```svelte
 /// file: App.svelte

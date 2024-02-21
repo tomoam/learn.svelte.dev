@@ -24,7 +24,7 @@ export async function DELETE({ params, cookies }) {
 }
 ```
 
-ブラウザに実際のデータを返す必要はないため、空の [Response](https://developer.mozilla.org/ja/docs/Web/API/Response) を [204 No Content](https://httpstatusdogs.com/204-no-content) ステータスで返しています。
+ブラウザに実際のデータを返す必要はないため、空の [Response](https://developer.mozilla.org/ja/docs/Web/API/Response) を [204 No Content](https://http.dog/204) ステータスで返しています。
 
 これで、イベントハンドラからこのエンドポイントを操作できるようになりました:
 
